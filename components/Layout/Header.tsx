@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import cn from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -9,16 +9,28 @@ import styles from '../../styles/Header.module.scss';
 
 const Header: FC = () => {
   const [navIsOpen, setNavIsOpen] = useState<boolean | null>(null);
+  const [isTop, setIsTop] = useState<boolean>(true);
 
   const navClassName = cn(styles.Header_Nav, {
     [styles.Header_Nav_open]: navIsOpen,
     [styles.Header_Nav_closed]: (navIsOpen !== null) && !navIsOpen,
   });
 
+  const headerClassName = cn(styles.Header, {
+    [styles.Header_transparent]: isTop,
+    [styles.Header_black]: !isTop,
+  });
+
   const toggleNavOpen = (): void => setNavIsOpen((isOpen) => !isOpen);
 
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      setIsTop(window.scrollY < 100);
+    });
+  }, []);
+
   return (
-    <header className={cn(styles.Header, styles.Header_transparent)} id="header">
+    <header className={headerClassName} id="header">
       <Logo className={styles.Header_Logo} />
       <div className={navClassName}>
         <button onClick={toggleNavOpen} type="button" className={styles.Header_CloseNavButton}>

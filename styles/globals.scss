@@ -67,3 +67,10 @@ body {
 main {
   overflow-x: hidden;
 }
+
+.section {
+  display: flex;
+  min-height: calc(100vh - #{$headerHeight});
+  align-items: center;
+  justify-content: center;
+}

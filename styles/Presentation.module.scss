@@ -1,0 +1,11 @@
+@import './common/common.scss';
+
+.Presentation {
+  background-image: url('/img/portada.png');
+  background-size: cover;
+  min-height: 100vh;
+  @media screen and (max-width: $breakpoint-tablet) {
+    background-size: cover;
+    min-height: 18rem;
+  }
+}
