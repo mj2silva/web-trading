@@ -1,0 +1,35 @@
+@import './common/common.scss';
+
+.SessionControls {
+  display: flex;
+  justify-content: space-between;
+  &_Login {
+    font-weight: bold;
+    width: 49%;
+    font-size: 1.2rem;
+  }
+  &_Register {
+    background-color: $cl-black;
+    color: $cl-white;
+    border-width: 2px;
+    width: 49%;
+    font-size: 1.2rem;
+  }
+  @media screen and (max-width: $breakpoint-tablet) {
+    width: 80%;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    &_Login, &_Register {
+      font-size: 2rem;
+      margin: .5rem 0;
+      width: 100%;
+    }
+  }
+  @media screen and (max-width: $breakpoint-mobile) {
+    width: 90%;
+    &_Login, &_Register {
+      font-size: 1.2rem;
+    }
+  }
+}

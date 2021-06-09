@@ -2,7 +2,18 @@ import { FC } from 'react';
 import cn from 'classnames';
 import dropdownStyles from '../../styles/Dropdown.module.scss';
 
-const Dropdown: FC = ({ className }) => (
+type Props = {
+  className?: string,
+}
+
+const defaultProps: Partial<Props> = {
+  className: '',
+};
+
+const itemClassName = dropdownStyles.Dropdown_Item;
+const linkClassName = cn('link', dropdownStyles.Dropdown_link);
+
+const Dropdown: FC<Props> = ({ className }: Props) => (
   <div className={cn(dropdownStyles.Dropdown, className)}>
     <div className={dropdownStyles.Dropdown_Title}>
       Sobre el programa
@@ -11,23 +22,25 @@ const Dropdown: FC = ({ className }) => (
       </span>
     </div>
     <ul className={dropdownStyles.Dropdown_Content}>
-      <li className={dropdownStyles.Dropdown_Item}>
-        <a className="link Dropdown_Link" href="./#beneficios">Beneficios</a>
+      <li className={itemClassName}>
+        <a className={linkClassName} href="./#beneficios">Beneficios</a>
       </li>
-      <li className={dropdownStyles.Dropdown_Item}>
-        <a className="link Dropdown_Link" href="./#Temario">Temario</a>
+      <li className={itemClassName}>
+        <a className={linkClassName} href="./#Temario">Temario</a>
       </li>
-      <li className={dropdownStyles.Dropdown_Item}>
-        <a className="link Dropdown_Link" href="./#Testimonios">Testimonios</a>
+      <li className={itemClassName}>
+        <a className={linkClassName} href="./#Testimonios">Testimonios</a>
       </li>
-      <li className={dropdownStyles.Dropdown_Item}>
-        <a className="link Dropdown_Link" href="./#FAQ">FAQ</a>
+      <li className={itemClassName}>
+        <a className={linkClassName} href="./#FAQ">FAQ</a>
       </li>
-      <li className={dropdownStyles.Dropdown_Item}>
-        <a className="link Dropdown_Link" href="./#Comunidad">Comunidad</a>
+      <li className={itemClassName}>
+        <a className={linkClassName} href="./#Comunidad">Comunidad</a>
       </li>
     </ul>
   </div>
 );
+
+Dropdown.defaultProps = defaultProps;
 
 export default Dropdown;
