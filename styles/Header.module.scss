@@ -1,0 +1,119 @@
+@import './common/common.scss';
+
+@keyframes open-header-nav {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes close-header-nav {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.Header {
+  position: sticky;
+  top: 0;
+  padding: 0 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  box-sizing: border-box;
+  height: $headerHeight;
+  justify-content: space-between;
+  align-items: center;
+  transition-duration: 500ms;
+  z-index: 99;
+  background-color: black;
+  &_transparent {
+    position: fixed;
+    background-color: transparent;
+  }
+  &_black {
+    position: fixed;
+    background-color: black;
+  }
+  &_Nav {
+    display: flex;
+    align-items: center;
+    height: calc(#{$headerHeight} / 2);
+  }
+  &_SessionControls {
+    min-width: 20rem;
+  }
+  &_OpenNavButton, &_CloseNavButton {
+    display: none;
+  }
+  &_MobileTitle {
+    display: none;
+  }
+  @media screen and (max-width: $breakpoint-tablet) {
+    flex-direction: row-reverse;
+    position: relative;
+    background-color: $cl-black;
+    &_Nav {
+      width: 100%;
+      position: fixed;
+      background-color: $cl-black;
+      min-height: 100vh;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: block;
+      &_open {
+        overflow: scroll;
+        animation: open-header-nav linear 250ms forwards;
+      }
+      &_closed {
+        animation: close-header-nav linear 250ms forwards;
+      }
+    }
+    &_Dropdown {
+      margin-bottom: 3rem;
+      margin-top: 3rem;
+    }
+    &_OpenNavButton, &_CloseNavButton {
+      display: block;
+      color: $cl-yellow;
+      justify-self: flex-end;
+      background-color: transparent;
+      border: none;
+    }
+    &_OpenNavButton {
+      font-size: 1.5rem;
+    }
+    &_CloseNavButton {
+      position: absolute;
+      right: 5rem;
+      top: 5rem;
+      font-size: 2.5rem;
+    }
+    &_MobileTitle {
+      display: block;
+      color: $cl-white;
+    }
+  }
+  @media screen and (max-width: $breakpoint-mobile) {
+    padding: 0 1rem;
+    &_CloseNavButton {
+      position: absolute;
+      right: 2rem;
+      top: 2rem;
+      font-size: 2rem;
+    }
+    &_MobileTitle {
+      & *:first-child {
+        font-size: 1.2rem;
+        margin: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,91 @@
+@import './common/common.scss';
+
+.Dropdown {
+  position: relative;
+  &_Title {
+    cursor: pointer;
+    padding: 1rem;
+    font-size: 1.2rem;
+    color: $cl-white;
+    &:hover + .Dropdown_Content {
+      display: block;
+      height: 12rem;
+      opacity: 100;
+    }
+    &:hover > .Dropdown_Arrow {
+      transform: rotate(180deg);
+    }
+  }
+  &_Arrow {
+    color: $cl-white;
+    display: inline-block;
+    margin: 0 .5rem;
+    transition-duration: 250ms;
+  }
+  &_Content {
+    position: absolute;
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    border-radius: 15px;
+    transition-duration: 500ms;
+    padding: .5rem 1rem;
+    background-color: $cl-white;
+    min-width: 10rem;
+    &:hover {
+      display: flex;
+      height: 12rem;
+      opacity: 100;
+    }
+  }
+  &_Item {
+    padding: .5rem;
+  }
+  &_Link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    &:hover {
+      color: $cl-softGray;
+    }
+  }
+  @media screen and (max-width: $breakpoint-tablet) {
+    display: block;
+    &_Title {
+      display: none;
+    }
+    &_Content {
+      position: relative;
+      height: auto;
+      width: 100%;
+      color: $cl-white;
+      background-color: transparent;
+      opacity: 100;
+      animation: none;
+      font-size: 2.5rem;
+      box-sizing: border-box;
+      &:hover {
+        display: flex;
+        height: auto;
+        opacity: initial;
+      }
+    }
+    &_Item {
+      margin: .5rem 0;
+    }
+    &_Link {
+      color: $cl-white;
+      text-align: center;
+    }
+  }
+  @media screen and (max-width: $breakpoint-mobile) {
+    &_Content {
+      min-height: 15rem;
+      font-size: 1.5rem;
+    }
+  }
+}

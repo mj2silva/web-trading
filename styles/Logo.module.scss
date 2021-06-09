@@ -1,0 +1,59 @@
+@import './common/common.scss';
+
+.Logo {
+  position: relative;
+  display: flex;
+  max-width: 12rem;
+  align-items: center;
+  justify-content: center;
+  &_Image {
+    position: relative;
+    min-width: 4rem;
+    min-height: 4rem;
+    background-color: $cl-white;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  &_BrandName {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin: 0 .5rem;
+    color: $cl-white;
+  }
+  &_black {
+    & .Logo {
+      &_BrandName {
+        color: $cl-black;
+      }
+    }
+  }
+  @media screen and (max-width: $breakpoint-tablet) {
+    &_BrandName {
+      display: none;
+    }
+    &_black {
+      & .logo {
+        &_BrandName {
+          display: block;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: $breakpoint-mobile) {
+    &_Image {
+      min-width: 3rem;
+      min-height: 3rem;
+    }
+    &_black {
+      & .Logo {
+        &_BrandName {
+          font-size: 1.3rem;
+        }
+        &_Image {
+          min-width: 5rem;
+          min-height: 5rem;
+        }
+      }
+    }
+  }
+}
