@@ -9,13 +9,16 @@
     "lint": "eslint --ext .ts,.tsx ./"
   },
   "dependencies": {
-    "classnames": "^2.2.6",
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.14",
+    "classnames": "^2.3.1",
     "next": "10.2.3",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
   "devDependencies": {
-    "@types/classnames": "^2.3.1",
+    "@types/node": "^15.12.2",
     "@types/react": "17.0.11",
     "@typescript-eslint/eslint-plugin": "^4.26.1",
     "@typescript-eslint/parser": "^4.26.1",

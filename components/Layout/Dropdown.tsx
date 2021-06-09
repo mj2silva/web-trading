@@ -1,5 +1,7 @@
 import { FC } from 'react';
 import cn from 'classnames';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import dropdownStyles from '../../styles/Dropdown.module.scss';
 
 type Props = {
@@ -11,14 +13,14 @@ const defaultProps: Partial<Props> = {
 };
 
 const itemClassName = dropdownStyles.Dropdown_Item;
-const linkClassName = cn('link', dropdownStyles.Dropdown_link);
+const linkClassName = cn('link', dropdownStyles.Dropdown_Link);
 
 const Dropdown: FC<Props> = ({ className }: Props) => (
   <div className={cn(dropdownStyles.Dropdown, className)}>
     <div className={dropdownStyles.Dropdown_Title}>
       Sobre el programa
       <span className={dropdownStyles.Dropdown_Arrow}>
-        <i className="fas fa-chevron-down" />
+        <FontAwesomeIcon icon={faChevronDown} />
       </span>
     </div>
     <ul className={dropdownStyles.Dropdown_Content}>

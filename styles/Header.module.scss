@@ -68,6 +68,7 @@
       left: 0;
       right: 0;
       display: block;
+      transform: translateX(-100%);
       &_open {
         overflow: scroll;
         animation: open-header-nav linear 250ms forwards;
