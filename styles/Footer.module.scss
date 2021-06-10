@@ -1,0 +1,103 @@
+@import './common/common.scss';
+
+.Footer {
+  display: flex;
+  flex-direction: column;
+  padding: 0 2rem;
+  min-height: 20rem;
+  justify-content: space-between;
+  &_Main {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  &_Contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    min-height: 15rem;
+  }
+  &_Foot {
+    display: flex;
+    border-top: 2px solid $cl-black;
+    align-items: center;
+    justify-content: space-between;
+    padding: .5rem;
+  }
+  &_Copy {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+  &_Legal {
+    font-size: 1.2rem;
+    color: $cl-red;
+  }
+  &_Link {
+    color: $cl-red;
+  }
+  &_SocialMedia {
+    display: flex;
+    flex-direction: column;
+  }
+  &_SocialLogos {
+    display: flex;
+    align-self: flex-end;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  &_SocialLogo {
+    color: $cl-white;
+    background-color: $cl-black;
+    height: 2.8rem;
+    width: 2.8rem;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .7rem;
+    border-radius: 50%;
+    margin: 0 .3rem;
+    transition-duration: 250ms;
+    cursor: pointer;
+    &:hover {
+      color: $cl-black;
+      background-color: $cl-white;
+    }
+  }
+  @media screen and (max-width: $breakpoint-tablet) {
+    padding: 3rem 2rem 0 2rem;
+    &_Contact {
+      width: 100%;
+      align-items: center;
+    }
+    &-ContactTitle {
+      text-align: center;
+      font-size: 1.4rem;
+    }
+    &-ContactMedia {
+      & p {
+        text-align: center;
+      }
+    }
+    &_SocialMessage {
+      font-weight: 100;
+      text-align: center;
+    }
+    &_SocialMedia {
+      margin-bottom: 2rem;
+      width: 100%;
+    }
+    &_SocialLogos {
+      align-self: center;
+    }
+    &_Foot {
+      flex-direction: column;
+    }
+    &_Copy, &_Legal {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+  }
+}

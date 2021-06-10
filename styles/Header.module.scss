@@ -82,20 +82,20 @@
       margin-top: 3rem;
     }
     &_OpenNavButton, &_CloseNavButton {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: $cl-yellow;
       justify-self: flex-end;
       background-color: transparent;
       border: none;
-    }
-    &_OpenNavButton {
-      font-size: 1.5rem;
+      width: 2.2rem;
+      height: 2.2rem;
     }
     &_CloseNavButton {
       position: absolute;
       right: 5rem;
       top: 5rem;
-      font-size: 2.5rem;
     }
     &_MobileTitle {
       display: block;
