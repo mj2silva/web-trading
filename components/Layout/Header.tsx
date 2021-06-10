@@ -2,10 +2,10 @@ import { FC, useEffect, useState } from 'react';
 import cn from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import styles from '@styles/Header.module.scss';
 import Logo from './Logo';
 import Dropdown from './Dropdown';
 import SessionControls from './SessionControls';
-import styles from '../../styles/Header.module.scss';
 
 const Header: FC = () => {
   const [navIsOpen, setNavIsOpen] = useState<boolean | null>(null);

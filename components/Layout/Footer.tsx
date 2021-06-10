@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faFacebookF, faInstagram, faTelegramPlane, faTiktok, faYoutube,
 } from '@fortawesome/free-brands-svg-icons';
+import styles from '@styles/Footer.module.scss';
 import Logo from './Logo';
-import styles from '../../styles/Footer.module.scss';
 
 const Footer: FC = () => (
   <footer className={styles.Footer}>

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import cn from 'classnames';
-import styles from '../../styles/SessionControls.module.scss';
+import styles from '@styles/SessionControls.module.scss';
 
 type Props = {
   className?: string,

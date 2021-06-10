@@ -2,7 +2,7 @@ import { FC } from 'react';
 import cn from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
-import dropdownStyles from '../../styles/Dropdown.module.scss';
+import dropdownStyles from '@styles/Dropdown.module.scss';
 
 type Props = {
   className?: string,

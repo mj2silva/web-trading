@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import cn from 'classnames';
-import logoStyles from '../../styles/Logo.module.scss';
+import logoStyles from '@styles/Logo.module.scss';
 
 type Props = {
   className?: string,
