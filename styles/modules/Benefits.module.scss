@@ -1,0 +1,75 @@
+@import '../common/common.scss';
+
+.Benefits {
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: $cl-gray-benefits;
+  &_Title {
+    margin: 4rem 0 1rem 0;
+  }
+  &_Body {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    height: 30rem;
+  }
+  &_Accordion {
+    max-height: 28rem;
+  }
+  &_Content {
+    height: fit-content;
+    width: 50%;
+    margin-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-height: 30rem;
+  }
+  &_ContentTitle {
+    margin: 0 0 1rem 0;
+  }
+  &_Image {
+    position: relative;
+    min-width: 20rem;
+    width: 40%;
+    height: 23rem;
+    & img {
+      object-fit: contain;
+      margin: 0 auto;
+    }
+  }
+  &_CallToAction {
+    margin: 2rem 0;
+  }
+  &_Button {
+    min-width: 15rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 1rem 1.5rem;
+  }
+  @media screen and (max-width: $breakpoint-tablet) {
+    &_Title {
+      padding: 0 2rem;
+      box-sizing: border-box;
+      margin-top: 2rem;
+    }
+    &_Body {
+      flex-direction: column;
+      width: 100%;
+      height: 32rem;
+    }
+    &_Content {
+      width: 90%;
+      margin-left: 0;
+      max-height: 40rem;
+    }
+    &_Accordion {
+      width: 100%;
+      max-height: 30rem;
+    }
+    &_Image {
+      display: none;
+    }
+  }
+}

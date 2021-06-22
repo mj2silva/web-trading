@@ -1,0 +1,285 @@
+@import '../common/common.scss';
+
+@keyframes open-item {
+  0% {
+    max-height: 0rem;
+  }
+  100% {
+    max-height: 10rem;
+  }
+}
+@keyframes collapse-item {
+  0% {
+    max-height: 10rem;
+  }
+  100% {
+    max-height: 0rem;
+  }
+}
+
+.Accordion {
+  display: flex;
+  flex-direction: column;
+  background-color: $cl-black;
+  border: 2px solid $cl-black;
+  border-radius: 8px;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  &_Content {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: $cl-white;
+    padding: 0 1rem;
+    align-items: center;
+    animation: open-item ease 500ms forwards;
+  }
+  &_withList {
+    display: flex;
+    flex-direction: row;
+    background-color: transparent;
+    border: none;
+    justify-content: space-between;
+    width: 100%;
+    height: 28rem;
+    & .Accordion_Content {
+      margin: 0;
+      padding: .5rem 1rem;
+    }
+    & .Accordion_Column {
+      width: 49%;
+      &--single {
+        width: 100%;
+      }
+    }
+    & .AccordionItem {
+      width: 100%;
+      height: fit-content;
+      margin-bottom: .5rem;
+      border: 1px solid $cl-darkGray;
+      border-radius: 5px;
+      overflow: hidden;
+      list-style: none;
+      &_Head {
+        background-color: $cl-darkGray;
+        color: $cl-white;
+        padding: .1rem .5rem;
+        height: 2rem;
+      }
+      &_Icon {
+        display: none;
+      }
+      &_Helper {
+        font-size: 1.5rem;
+      }
+      &_Title {
+        font-size: 1.1rem;
+        font-family: $avenirDemi;
+        font-weight: 100;
+      }
+      &_collapsed {
+        background-color: $cl-darkGray;
+        & .AccordionItem {
+          &_Head {
+            &:hover + .Accordion_Content {
+              display: flex;
+              width: 100%;
+              height: 8rem;
+              padding: .5rem 1rem;
+              opacity: 1;
+              z-index: 0;
+              justify-content: center;
+            }
+          }
+          &_Helper {
+            opacity: 100;
+          }
+        }
+        & .Accordion_Content {
+          box-sizing: border-box;
+          padding: 0;
+          height: 0;
+          opacity: 0;
+          z-index: -1;
+          &:hover {
+            display: flex;
+            width: 100%;
+            height: 8rem;
+            padding: .5rem 1rem;
+            opacity: 1;
+            z-index: 0;
+            justify-content: center;
+          }
+        }
+      }
+    }
+  }
+  &_listOneColumn {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    box-sizing: border-box;
+    & .AccordionItem {
+      width: 100%;
+      height: fit-content;
+      margin-bottom: .5rem;
+      border: 1px solid $cl-gray;
+      overflow: hidden;
+      &_Head {
+        background-color: $cl-gray;
+        color: $cl-darkGray;
+        padding: .5rem .8rem;
+        height: 3rem;
+      }
+      &_Icon {
+        display: none;
+      }
+      &_Helper {
+        font-size: 1.5rem;
+      }
+      &_Title {
+        font-size: 1.2rem;
+      }
+      &_collapsed {
+        background-color: $cl-gray;
+        border-radius: 8px;
+        & .AccordionItem {
+          overflow: hidden;
+          border: 1px solid $cl-gray;
+          &_Head {
+            &:hover + .Accordion_Content {
+              display: flex;
+              width: 100%;
+              height: 8rem;
+              border-radius: 5px;
+              padding: .5rem 1rem;
+              opacity: 1;
+              z-index: 0;
+              justify-content: center;
+            }
+          }
+          &_Helper {
+            opacity: 100;
+          }
+        }
+        & .Accordion_Content {
+          box-sizing: border-box;
+          padding: 0;
+          height: 0;
+          opacity: 0;
+          z-index: -1;
+          &:hover {
+            display: flex;
+            width: 100%;
+            height: 8rem;
+            padding: .5rem 1rem;
+            opacity: 1;
+            z-index: 0;
+            justify-content: center;
+            overflow: hidden;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: $breakpoint-tablet) {
+    &_withList {
+      flex-direction: column;
+      justify-content: flex-start;
+      & .Accordion_Column {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+}
+
+.AccordionItem {
+  box-sizing: border-box;
+  max-width: 100%;
+  &_Head {
+    display: flex;
+    justify-content: space-between;
+    background-color: $cl-black;
+    color: $cl-yellow;
+    cursor: pointer;
+    padding: .5rem 1rem;
+    margin: 0;
+    width: 100%;
+    height: 3rem;
+    box-sizing: border-box;
+    transition-duration: 500ms;
+  }
+  &_Description {
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+  }
+  &_Helper {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-right: 1rem;
+    transition-duration: 500ms;
+    background: none;
+    border: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    color: $cl-yellow;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    &:hover {
+      transform: rotate(180deg);
+    }
+  }
+  &_Icon {
+    color: $cl-yellow;
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+    margin-right: 1rem;
+    padding: 0;
+    background: none;
+    border: none;
+    transition-duration: 500ms;
+    cursor: pointer;
+    &:hover {
+      transform: rotate(135deg);
+    }
+  }
+  &_Title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-family: $avenirDemi;
+  }
+  &_collapsed {
+    & .AccordionItem {
+      &_Head {
+        background-color: $cl-gray-benefits;
+        color: $cl-black;
+      }
+      &_Helper {
+        opacity: 0;
+      }
+      &_Icon {
+        color: $cl-black;
+      }
+    }
+    & .Accordion_Content {
+      animation: collapse-item ease 250ms forwards;
+    }
+  }
+
+  @media screen and (max-width: $breakpoint-tablet) {
+    & {
+      &_Title {
+        font-size: 1.3rem;
+      }
+    }
+  }
+}
