@@ -48,6 +48,10 @@
     font-family: $avenirDemi;
     margin: 0;
   }
+  &_Error {
+    margin: 0;
+    color: $cl-red;
+  }
   &_SuccessIcon {
     position: relative;
     background-color: $cl-success;

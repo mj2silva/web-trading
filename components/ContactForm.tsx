@@ -1,5 +1,6 @@
+/* eslint-disable jsx-a11y/no-onchange */
 import {
-  ChangeEventHandler, FC, FocusEventHandler, FormEventHandler, useState,
+  ChangeEventHandler, FC, FormEventHandler, useState,
 } from 'react';
 import cn from 'classnames';
 import styles from '@styles/Form.module.scss';
@@ -15,7 +16,7 @@ const defaultProps: Partial<Props> = {
 
 const preInscription = async (names: string, email: string, country: string): Promise<void> => {
   const sendPreInscription = new Promise<void>((resolve, reject) => {
-    if (names.match(/[a-zA-Z ]+/) && country !== 'none') {
+    if (/^[A-zÀ-ú ]+$/.test(names)) {
       setTimeout(() => {
         resolve(alert(JSON.stringify({ email, names, country }, null, 2)));
       }, 1500);
@@ -30,6 +31,8 @@ const ContactForm: FC<Props> = (props: Props) => {
   const { className } = props;
   const formClassName = cn(styles.Form, className);
   const buttonClassName = cn('button', styles.Form_Button);
+  const [error, setError] = useState<string>();
+  const [success, setSuccess] = useState(false);
   const [formValues, setFormValues] = useState({
     names: '',
     email: '',
@@ -44,7 +47,7 @@ const ContactForm: FC<Props> = (props: Props) => {
     });
   };
 
-  const handleSelectChange: FocusEventHandler<HTMLSelectElement> = (event) => {
+  const handleSelectChange: ChangeEventHandler<HTMLSelectElement> = (event) => {
     setFormValues({
       ...formValues,
       [event.target.name]: event.target.value,
@@ -54,8 +57,16 @@ const ContactForm: FC<Props> = (props: Props) => {
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
     setIsSubmitting(true);
-    await preInscription(formValues.names, formValues.email, formValues.country);
-    setIsSubmitting(false);
+    try {
+      await preInscription(formValues.names, formValues.email, formValues.country);
+      setSuccess(true);
+      setError(undefined);
+    } catch (err) {
+      setError('Hubo un error al enviar el formulario, puede intentarlo más tarde o comunicarse via');
+      setSuccess(false);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return !isSubmitting
@@ -71,6 +82,7 @@ const ContactForm: FC<Props> = (props: Props) => {
               name="names"
               onChange={handleChange}
               type="text"
+              value={formValues.names}
               className={styles.Form_Input}
               placeholder="Nombres y apellidos"
             />
@@ -79,6 +91,7 @@ const ContactForm: FC<Props> = (props: Props) => {
             <span className={styles.Form_Label}>Email</span>
             <input
               name="email"
+              value={formValues.email}
               onChange={handleChange}
               type="email"
               className={styles.Form_Input}
@@ -89,9 +102,10 @@ const ContactForm: FC<Props> = (props: Props) => {
             <span className={styles.Form_Label}>Nombres y Apellidos</span>
             <select
               name="country"
-              onBlur={handleSelectChange}
+              onChange={handleSelectChange}
               className={styles.Form_Input}
               placeholder="País"
+              value={formValues.country}
             >
               <option selected disabled value="none">País</option>
               <option value="Argentina">Argentina</option>
@@ -100,12 +114,19 @@ const ContactForm: FC<Props> = (props: Props) => {
               <option value="Perú">Perú</option>
             </select>
           </label>
+          { success && (
           <h4 className={styles.Form_Success}>
             <span className={styles.Form_SuccessIcon}>
               <img className="image" src="/img/check.png" alt="check icon" />
             </span>
-            Ya estoy registrado
+            Te has registrado correctamente
           </h4>
+          ) }
+          { error && (
+            <h4 className={styles.Form_Error}>
+              {error}
+            </h4>
+          )}
           <button type="submit" className={buttonClassName}>ENVIAR</button>
         </form>
       </div>
