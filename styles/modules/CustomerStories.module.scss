@@ -1,0 +1,107 @@
+@import '../common/common.scss';
+
+.CustomerStories {
+  flex-direction: column;
+  justify-content: space-between;
+  background-image: url('/img/traders.png');
+  min-height: 30rem;
+  color: $cl-white;
+  &_Icon {
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+  }
+  &_Title {
+    display: flex;
+    color: $cl-yellow;
+    align-items: center;
+    margin: 2rem 0;
+  }
+  &_Text {
+    margin: 0 1rem;
+  }
+  &_TextSub {
+    border-bottom: 5px solid $cl-yellow;
+  }
+  &_Stories {
+    display: flex;
+    justify-content: space-evenly;
+    position: relative;
+    min-height: 20rem;
+    width: 100%;
+  }
+  &_Controls {
+    display: flex;
+    margin: 2rem 0;
+    &_mobile {
+      display: none;
+    }
+  }
+  &_Control {
+    width: .5rem;
+    height: .5rem;
+    border-radius: 50%;
+    border: 1px solid $cl-yellow;
+    overflow: hidden;
+    cursor: pointer;
+    margin: .2rem;
+    box-sizing: border-box;
+    padding: 0;
+    background-color: transparent;
+    &:hover {
+      background-color: $cl-yellow;
+    }
+    &_active {
+      background-color: $cl-yellow;
+    }
+  }
+  @media screen and (max-width: $breakpoint-tablet) {
+    height: 35rem;
+    padding: 3rem 0;
+    &_Controls {
+      display: none;
+      &_mobile {
+        display: flex;
+        margin: 2rem 2rem;
+      }
+    }
+    &_Control {
+      &_prev, &_next {
+        width: 3rem;
+        height: 3rem;
+        padding: .8rem;
+        border-radius: 50%;
+        color: $cl-black;
+        background-color: $cl-yellow;
+        border: 1px solid $cl-yellow;
+        overflow: hidden;
+        cursor: pointer;
+        margin: .2rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        &:hover {
+          background-color: $cl-yellow-hover;
+        }
+      }
+    }
+    &_Stories {
+      position: relative;
+      min-height: 22rem;
+      width: 100%;
+    }
+    &_Storie {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+  }
+}

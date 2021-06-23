@@ -1,0 +1,100 @@
+@import '../common/common.scss';
+
+.Storie {
+  display: flex;
+  max-width: 25rem;
+  align-items: center;
+  &_AuthorPhoto {
+    position: relative;
+    width: 10rem;
+    height: 10rem;
+    margin: 1rem 1rem;
+  }
+  &_AuthorData {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  &_AuthorName {
+    margin: 0;
+  }
+  &_Message {
+    margin: .5rem 0;
+  }
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  &_Inactive {
+    animation: storie-mobile-out ease 1s;
+    opacity: 0;
+    transform: translate(-1000%);
+    left: 50%;
+  }
+  &_Main {
+    animation: storie-mobile-in ease 1s forwards;
+    left: -50%;
+  }
+  &_Secondary {
+    animation: storie-mobile-to-secondary ease 1s;
+    left: 50%;
+  }
+  @media screen and (max-width: $breakpoint-tablet) {
+    transform: translateX(-100%);
+    animation: storie-mobile-out ease 1s forwards;
+    &_AuthorName, &_Message {
+      text-align: center;
+      max-width: 80%;
+      margin: 0 auto;
+    }
+    &_Inactive {
+      animation: storie-mobile-out ease 1s;
+      opacity: 0;
+      transform: translate(-1000%);
+      left: 0;
+    }
+    &_Main {
+      animation: storie-mobile-in ease 1s forwards;
+      left: 0;
+    }
+    &_Secondary {
+      animation: storie-mobile-out ease 1s;
+      opacity: 0;
+      transform: translate(-1000%);
+      left: 0;
+    }
+  }
+}
+
+@keyframes storie-mobile-out {
+  0% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes storie-mobile-to-secondary {
+  0% {
+    transform: translateX(-190%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes storie-mobile-in {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

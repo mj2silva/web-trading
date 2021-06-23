@@ -119,7 +119,7 @@ const Modules: FC = () => {
   const modulesListAccordionContent = modulesList.map((item) => ({
     title: item.title,
     content: item.moduleItems.map((moduleItem, index) => (
-      <li className={styles.ModuleAbstract_Topic}>
+      <li key={`mod-item-acc-${index + 1}`} className={styles.ModuleAbstract_Topic}>
         <span className={styles.ModuleAbstract_TopicName}>
           {index + 1}
           .
