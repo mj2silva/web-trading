@@ -5,7 +5,15 @@ type UseSliderProps = {
   totalPages?: number,
 }
 
-const useSlider = ({ auto, totalPages = 0 }: UseSliderProps) => {
+type UseSliderReturn = {
+  currentStep: number,
+  goToNextPage: () => void,
+  goToPreviousPage: () => void,
+  goToPage: (id: number) => void,
+}
+
+const useSlider = (props: UseSliderProps): UseSliderReturn => {
+  const { auto, totalPages = 0 } = props;
   const [currentStep, setCurrentStep] = useState(0);
   const [timeoutId, setTimeoutId] = useState<number>();
 
