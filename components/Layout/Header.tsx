@@ -32,7 +32,8 @@ const Header: FC = () => {
   }, []);
 
   useEffect(() => {
-    setNavIsOpen(false);
+    if (navIsOpen) setNavIsOpen(false);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [asPath]);
 
   return (
