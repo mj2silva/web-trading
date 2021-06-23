@@ -33,6 +33,7 @@ const SocialMedia: FC = () => {
   ];
   return (
     <section className={className}>
+      <span className="target" id="comunidad" />
       <h2 className={styles.SocialMedia_Title}>
         TE INVITO A
         {' '}

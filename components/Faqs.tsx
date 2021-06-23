@@ -21,6 +21,7 @@ const Faqs: FC = () => {
   ];
   return (
     <section className={className}>
+      <span className="target" id="faqs" />
       <div className={styles.Faqs_Title}>
         <h2>
           PREGUNTAS

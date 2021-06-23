@@ -25,19 +25,19 @@ const Dropdown: FC<Props> = ({ className }: Props) => (
     </div>
     <ul className={dropdownStyles.Dropdown_Content}>
       <li className={itemClassName}>
-        <a className={linkClassName} href="./#beneficios">Beneficios</a>
+        <a className={linkClassName} href="/#beneficios">Beneficios</a>
       </li>
       <li className={itemClassName}>
-        <a className={linkClassName} href="./#Temario">Temario</a>
+        <a className={linkClassName} href="/#temario">Temario</a>
       </li>
       <li className={itemClassName}>
-        <a className={linkClassName} href="./#Testimonios">Testimonios</a>
+        <a className={linkClassName} href="/#testimonios">Testimonios</a>
       </li>
       <li className={itemClassName}>
-        <a className={linkClassName} href="./#FAQ">FAQ</a>
+        <a className={linkClassName} href="/#faqs">FAQ</a>
       </li>
       <li className={itemClassName}>
-        <a className={linkClassName} href="./#Comunidad">Comunidad</a>
+        <a className={linkClassName} href="/#comunidad">Comunidad</a>
       </li>
     </ul>
   </div>

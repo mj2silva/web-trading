@@ -44,6 +44,7 @@ const Benefits: FC = () => {
   ];
   return (
     <section className={cn('section', styles.Benefits)}>
+      <span className="target" id="beneficios" />
       <div className={cn(titleStyles.Title, styles.Benefits_Title)}>
         <h1 className={titleStyles.Title_Main}>PROGRAMA VIRTUAL: TRADING PARA TI</h1>
         <h3 className={titleStyles.Title_Secondary}>

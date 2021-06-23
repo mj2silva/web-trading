@@ -135,6 +135,7 @@ const Modules: FC = () => {
   const modulesClassName = cn('section', styles.Modules);
   return (
     <section className={modulesClassName}>
+      <span className="target" id="temario" />
       <div className={styles.Module_Title}>
         <h2 className={styles.Module_TitleMain}>MÓDULOS DEL PROGRAMA</h2>
         <div className={styles.Module_TitleBar} />

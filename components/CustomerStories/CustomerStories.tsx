@@ -38,6 +38,7 @@ const CustomerStories: FC = () => {
 
   return (
     <section className={cn('section', styles.CustomerStories)}>
+      <span className="target" id="testimonios" />
       <div className={styles.CustomerStories_Title}>
         <div className={styles.CustomerStories_Icon}>
           <img className="image" src="/img/trader-estrella.png" alt="" />
