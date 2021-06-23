@@ -9,19 +9,25 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 type Props = {
   title: string,
   content: ReactNode,
+  contentClassName?: string,
   id: number,
   openedId: number,
   openFunction: (id: number) => void,
-}
+};
+
+const defaultProps: Partial<Props> = {
+  contentClassName: undefined,
+};
 
 const AccordionItem: FC<Props> = (props: Props) => {
   const {
-    title, content, id, openedId, openFunction,
+    title, content, id, openedId, openFunction, contentClassName,
   } = props;
   const [isOpen, setIsOpen] = useState(false);
   const itemClassName = cn(styles.AccordionItem, {
     [styles.AccordionItem_collapsed]: !isOpen,
   });
+  const listClassName = cn(styles.Accordion_List, contentClassName);
   useEffect(() => {
     setIsOpen(openedId === id);
   }, [openedId, id]);
@@ -46,12 +52,22 @@ const AccordionItem: FC<Props> = (props: Props) => {
         </button>
       </div>
       <div className={styles.Accordion_Content}>
-        <p>
-          { content }
-        </p>
+        { Array.isArray(content)
+          ? (
+            <ul className={listClassName}>
+              { content }
+            </ul>
+          )
+          : (
+            <p>
+              { content }
+            </p>
+          )}
       </div>
     </div>
   );
 };
+
+AccordionItem.defaultProps = defaultProps;
 
 export default AccordionItem;

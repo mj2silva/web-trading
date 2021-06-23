@@ -50,7 +50,7 @@
     }
     & .Accordion_Column {
       width: 49%;
-      &--single {
+      &_single {
         width: 100%;
       }
     }
@@ -73,6 +73,7 @@
       }
       &_Helper {
         font-size: 1.5rem;
+        color: $cl-white;
       }
       &_Title {
         font-size: 1.1rem;
@@ -82,19 +83,15 @@
       &_collapsed {
         background-color: $cl-darkGray;
         & .AccordionItem {
-          &_Head {
-            &:hover + .Accordion_Content {
-              display: flex;
-              width: 100%;
-              height: 8rem;
-              padding: .5rem 1rem;
-              opacity: 1;
-              z-index: 0;
-              justify-content: center;
-            }
-          }
           &_Helper {
             opacity: 100;
+            color: $cl-white;
+          }
+          &_Head {
+            background-color: $cl-darkGray;
+            color: $cl-white;
+            padding: .1rem .5rem;
+            height: 2rem;
           }
         }
         & .Accordion_Content {
@@ -103,15 +100,6 @@
           height: 0;
           opacity: 0;
           z-index: -1;
-          &:hover {
-            display: flex;
-            width: 100%;
-            height: 8rem;
-            padding: .5rem 1rem;
-            opacity: 1;
-            z-index: 0;
-            justify-content: center;
-          }
         }
       }
     }

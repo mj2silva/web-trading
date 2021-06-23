@@ -1,4 +1,5 @@
 import Benefits from 'components/Benefits';
+import Modules from 'components/Modules';
 import Head from 'next/head';
 import { FC } from 'react';
 import Presentation from '../components/Presentation';
@@ -13,6 +14,7 @@ const Home: FC = () => (
     <main>
       <Presentation />
       <Benefits />
+      <Modules />
     </main>
   </>
 );
