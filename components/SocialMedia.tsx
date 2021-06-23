@@ -43,6 +43,7 @@ const SocialMedia: FC = () => {
         {
           socialCardList.map((socialCardContent) => (
             <SocialCard
+              key={`soc-card-${socialCardContent.cardName}`}
               className={styles.SocialMedia_SocialCard}
               content={socialCardContent}
             />

@@ -32,6 +32,7 @@ const Header: FC = () => {
   }, []);
 
   useEffect(() => {
+    console.log(asPath);
     setNavIsOpen(false);
   }, [asPath]);
 

@@ -3,6 +3,7 @@ import cn from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import dropdownStyles from '@styles/Dropdown.module.scss';
+import Link from 'next/link';
 
 type Props = {
   className?: string,
@@ -25,19 +26,29 @@ const Dropdown: FC<Props> = ({ className }: Props) => (
     </div>
     <ul className={dropdownStyles.Dropdown_Content}>
       <li className={itemClassName}>
-        <a className={linkClassName} href="/#beneficios">Beneficios</a>
+        <Link href="/#beneficios">
+          <a className={linkClassName}>Beneficios</a>
+        </Link>
       </li>
       <li className={itemClassName}>
-        <a className={linkClassName} href="/#temario">Temario</a>
+        <Link href="/#temario">
+          <a className={linkClassName}>Temario</a>
+        </Link>
       </li>
       <li className={itemClassName}>
-        <a className={linkClassName} href="/#testimonios">Testimonios</a>
+        <Link href="/#testimonios">
+          <a className={linkClassName}>Testimonios</a>
+        </Link>
       </li>
       <li className={itemClassName}>
-        <a className={linkClassName} href="/#faqs">FAQ</a>
+        <Link href="/#faqs">
+          <a className={linkClassName}>FAQ</a>
+        </Link>
       </li>
       <li className={itemClassName}>
-        <a className={linkClassName} href="/#comunidad">Comunidad</a>
+        <Link href="/#comunidad">
+          <a className={linkClassName}>Comunidad</a>
+        </Link>
       </li>
     </ul>
   </div>

@@ -107,7 +107,7 @@ const ContactForm: FC<Props> = (props: Props) => {
               placeholder="País"
               value={formValues.country}
             >
-              <option selected disabled value="none">País</option>
+              <option disabled value="none">País</option>
               <option value="Argentina">Argentina</option>
               <option value="Chile">Chile</option>
               <option value="Colombia">Colombia</option>
