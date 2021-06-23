@@ -1,10 +1,14 @@
 import {
-  ChangeEventHandler, FC, FormEventHandler, useState,
+  ChangeEventHandler, FC, FormEventHandler, useContext, useState,
 } from 'react';
 import cn from 'classnames';
+import { useRouter } from 'next/dist/client/router';
 import styles from '@styles/LoginForm.module.scss';
+import { UserContext } from './UserProvider';
 
 const LoginForm: FC = () => {
+  const { signIn, error } = useContext(UserContext);
+  const { push } = useRouter();
   const [formValues, setFormValues] = useState({
     email: '',
     password: '',
@@ -17,6 +21,10 @@ const LoginForm: FC = () => {
   };
   const login: FormEventHandler<HTMLFormElement> = (event): void => {
     event.preventDefault();
+    if (signIn) {
+      signIn(formValues.email, formValues.password);
+      push('/curso');
+    }
   };
   return (
     <div className={styles.LoginForm}>
@@ -49,6 +57,7 @@ const LoginForm: FC = () => {
         <a className={styles.LoginForm_ForgotPasswordLink} href="#">
           ¿Olvidaste la contraseña?
         </a>
+        { error && <span>{ error }</span>}
         <button className={cn('button', styles.LoginForm_Button)} type="submit">
           ENVIAR
         </button>

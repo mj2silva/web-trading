@@ -1,0 +1,80 @@
+@import '../common/common.scss';
+
+.ProfileMenu {
+  &_Selector {
+    display: flex;
+    align-items: center;
+    &:hover + .ProfileMenu_Options {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 22rem;
+    }
+  }
+  &_Picture {
+    position: relative;
+    width: 3rem;
+    height: 3rem;
+  }
+  &_Options {
+    right: 1rem;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: $cl-gray-benefits;
+    padding: 0 1rem;
+    &:hover {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 22rem;
+    }
+  }
+  &_OptionsPicture {
+    position: relative;
+    width: 4rem;
+    height: 4rem;
+  }
+  &_Button {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: .5rem;
+  }
+  &_Names, &_LastNames, &_Username {
+    margin: .5rem 0;
+  }
+  &_Logout {
+    color: $cl-red;
+    margin-top: .5rem;
+    font-size: 1.2rem;
+  }
+  @media screen and (max-width: $breakpoint-tablet) {
+    height: 100%;
+    position: relative;
+    &_Selector {
+      display: none;
+    }
+    &_Options {
+      background-color: transparent;
+      display: block;
+      text-align: center;
+      height: 100%;
+      justify-content: space-evenly;
+      overflow-y: scroll;
+      padding: 5rem 0;
+      right: 0;
+      & * {
+        margin-bottom: 1rem;
+      }
+      &:hover {
+        height: 100%;
+        display: block;
+      }
+    }
+    &_OptionsPicture, &_Button {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}

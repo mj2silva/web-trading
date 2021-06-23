@@ -1,4 +1,6 @@
-import { FC, useEffect, useState } from 'react';
+import {
+  FC, useContext, useEffect, useState,
+} from 'react';
 import cn from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -7,11 +9,14 @@ import styles from '@styles/Header.module.scss';
 import Logo from './Logo';
 import Dropdown from './Dropdown';
 import SessionControls from './SessionControls';
+import { UserContext } from './UserProvider';
+import ProfileMenu from './ProfileMenu';
 
 const Header: FC = () => {
   const [navIsOpen, setNavIsOpen] = useState<boolean | null>(null);
   const [isTop, setIsTop] = useState<boolean>(true);
   const { asPath } = useRouter();
+  const { user } = useContext(UserContext);
 
   const navClassName = cn(styles.Header_Nav, {
     [styles.Header_Nav_open]: navIsOpen,
@@ -20,7 +25,7 @@ const Header: FC = () => {
 
   const headerClassName = cn(styles.Header, {
     [styles.Header_transparent]: isTop,
-    [styles.Header_black]: !isTop,
+    [styles.Header_black]: !isTop || user,
   });
 
   const toggleNavOpen = (): void => setNavIsOpen((isOpen) => !isOpen);
@@ -43,8 +48,18 @@ const Header: FC = () => {
         <button onClick={toggleNavOpen} type="button" className={styles.Header_CloseNavButton}>
           <FontAwesomeIcon icon={faTimes} />
         </button>
-        <Dropdown className={styles.Header_Dropdown} />
-        <SessionControls className={styles.Header_SessionControls} />
+        {
+          (user)
+            ? (
+              <ProfileMenu className={styles.Header_ProfileMenu} />
+            )
+            : (
+              <>
+                <Dropdown className={styles.Header_Dropdown} />
+                <SessionControls className={styles.Header_SessionControls} />
+              </>
+            )
+        }
       </div>
       <div className={styles.Header_MobileTitle}>
         <h2>TRADING PARA TI</h2>
