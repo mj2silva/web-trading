@@ -50,7 +50,9 @@ const Footer: FC = () => (
     <div className={styles.Footer_Foot}>
       <div className={styles.Footer_Legal}>
         <a className={cn('link', styles.Footer_Link)} href="#">POLITICAS DE PRIVACIDAD</a>
+        {' '}
         |
+        {' '}
         <a className={cn('link', styles.Footer_Link)} href="#">TÉRMINOS Y CONDICIONES</a>
       </div>
       <p className={styles.Footer_Copy}>
