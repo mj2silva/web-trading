@@ -1,0 +1,70 @@
+@import '../common/common.scss';
+
+// Gradientes
+$cl-black-gradient: #05050585;
+$cl-black: #050505;
+$cl-dark-gray: #242526;
+$cl-dark-gray-soft: #4A4A4A;
+
+.Modal {
+  &_Overlay {
+    position: fixed;
+    inset: 0px;
+    background-color: $cl-black-gradient;
+    z-index: 9999;
+  }
+  &_Content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: fit-content;
+    height: 38rem;
+    margin: auto;
+    background: $cl-dark-gray;
+    overflow: auto;
+    border-radius: 4px;
+    outline: none;
+    &_fitHeight {
+      height: fit-content;
+    }
+  }
+  &_Body {
+    height: 33rem;
+    color: $cl-white;
+    &_Alert {
+      height: fit-content;
+    }
+    &_fitHeight {
+      height: fit-content;
+    }
+  }
+  &_Header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 4rem;
+  }
+  &_CloseButton {
+    display: flex;
+    justify-self: flex-end;
+    align-items: center;
+    justify-content: center;
+    color: $cl-gray;
+    background-color: $cl-dark-gray-soft;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.1rem;
+    &:hover {
+      color: $cl-dark-gray-soft;
+      background-color: $cl-gray;
+    }
+  }
+}

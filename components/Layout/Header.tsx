@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import cn from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { useRouter } from 'next/dist/client/router';
 import styles from '@styles/Header.module.scss';
 import Logo from './Logo';
 import Dropdown from './Dropdown';
@@ -10,6 +11,7 @@ import SessionControls from './SessionControls';
 const Header: FC = () => {
   const [navIsOpen, setNavIsOpen] = useState<boolean | null>(null);
   const [isTop, setIsTop] = useState<boolean>(true);
+  const { asPath } = useRouter();
 
   const navClassName = cn(styles.Header_Nav, {
     [styles.Header_Nav_open]: navIsOpen,
@@ -28,6 +30,10 @@ const Header: FC = () => {
       setIsTop(window.scrollY < 100);
     });
   }, []);
+
+  useEffect(() => {
+    setNavIsOpen(false);
+  }, [asPath]);
 
   return (
     <header className={headerClassName} id="header">

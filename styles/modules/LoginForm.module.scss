@@ -1,0 +1,49 @@
+@import '../common/common.scss';
+
+.LoginForm {
+  background-color: $cl-gray-benefits;
+  box-sizing: border-box;
+  padding: 1.5rem 1rem;
+  min-width: 20rem;
+  border-radius: 10px;
+  &_Title {
+    color: $cl-black;
+    margin: 0;
+    padding: 1rem 0;
+    text-align: center;
+    font-size: 1.5rem;
+  }
+  &_Form {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+  }
+  &_Item {
+    display: flex;
+    flex-direction: column;
+  }
+  &_Label {
+    display: none;
+  }
+  &_Input {
+    padding: .5rem .5rem;
+    border: solid 2px $cl-black;
+    border-radius: 10px;
+    font-size: 1.2rem;
+  }
+  &_ForgotPasswordLink {
+    color: $cl-red;
+    text-decoration: none;
+    font-weight: 400;
+    margin: .5rem 0;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &_Button {
+    font-weight: bold;
+    font-size: 1.2rem;
+    max-width: 12rem;
+    align-self: center;
+  }
+}

@@ -7,6 +7,7 @@ const Contact: FC = () => {
   const contactStyles = cn('section', styles.ContactForm);
   return (
     <section className={contactStyles}>
+      <span className="target" id="preregistro" />
       <h2 className={styles.ContactForm_Title}>
         ¿ESTÁS LISTO PARA DOMINAR EL TRADING?
       </h2>

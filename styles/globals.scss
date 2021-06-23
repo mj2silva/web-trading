@@ -29,6 +29,9 @@
   position: absolute;
   top: 0;
   margin-top: -$headerHeight;
+  @media screen and (max-width: $breakpoint-tablet) {
+    margin-top: 0;
+  }
 }
 .link {
   text-decoration: none;
@@ -68,9 +71,26 @@ main {
   overflow-x: hidden;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .section {
   display: flex;
   min-height: calc(100vh - #{$headerHeight});
   align-items: center;
   justify-content: center;
+  position: relative;
+}
+
+.ReactModal__Body--open {
+  overflow-y: hidden;
+}
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transition-duration: 500ms;
+  &--after-open {
+    opacity: 1;
+  }
 }
