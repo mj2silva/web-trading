@@ -11,16 +11,18 @@ type AccordionListProps = {
   }[],
   handleOpen: (id: number) => void,
   openedId: number,
+  columns?: number,
 }
 
 const accordionItemDefaultProps = {
   contentClassName: undefined,
+  columns: 1,
 };
 
 const AccordionItemWithListContainer: FC<AccordionListProps> = ({
-  content, openedId, handleOpen, contentClassName,
+  content, openedId, handleOpen, contentClassName, columns,
 }: AccordionListProps) => {
-  const columnLength = content.length / 2;
+  const columnLength = content.length / (columns || 1);
   const firstColumnItems: ReactNode[] = [];
   const secondColumnItems: ReactNode[] = [];
   content.forEach((item, index) => {
@@ -46,9 +48,14 @@ const AccordionItemWithListContainer: FC<AccordionListProps> = ({
       <div className={styles.Accordion_Column}>
         { firstColumnItems }
       </div>
-      <div className={styles.Accordion_Column}>
-        { secondColumnItems }
-      </div>
+      {
+        secondColumnItems.length > 0
+        && (
+          <div className={styles.Accordion_Column}>
+            { secondColumnItems }
+          </div>
+        )
+      }
     </>
   );
 };
@@ -78,7 +85,7 @@ const Accordion: FC<Props> = (props: Props) => {
   const accordionClassName = cn(
     styles.Accordion, {
       [styles.Accordion_withList]: type === 'with-list',
-      [styles.Accordion_listOneColumne]: type === 'list-one-column',
+      [styles.Accordion_listOneColumn]: type === 'list-one-column',
     },
     className,
   );
@@ -89,13 +96,14 @@ const Accordion: FC<Props> = (props: Props) => {
   return (
     <div className={accordionClassName}>
       {
-        type === 'with-list'
+        type === 'with-list' || type === 'list-one-column'
           ? (
             <AccordionItemWithListContainer
               contentClassName={contentClassName}
               handleOpen={handleOpen}
               openedId={openedId}
               content={content}
+              columns={type === 'with-list' ? 2 : 1}
             />
           )
           : content.map((item, index) => (

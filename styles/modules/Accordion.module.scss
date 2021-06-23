@@ -126,6 +126,7 @@
       }
       &_Helper {
         font-size: 1.5rem;
+        color: $cl-darkGray;
       }
       &_Title {
         font-size: 1.2rem;
@@ -136,20 +137,11 @@
         & .AccordionItem {
           overflow: hidden;
           border: 1px solid $cl-gray;
-          &_Head {
-            &:hover + .Accordion_Content {
-              display: flex;
-              width: 100%;
-              height: 8rem;
-              border-radius: 5px;
-              padding: .5rem 1rem;
-              opacity: 1;
-              z-index: 0;
-              justify-content: center;
-            }
-          }
           &_Helper {
             opacity: 100;
+          }
+          &_Head {
+            background-color: $cl-gray;
           }
         }
         & .Accordion_Content {
@@ -158,16 +150,6 @@
           height: 0;
           opacity: 0;
           z-index: -1;
-          &:hover {
-            display: flex;
-            width: 100%;
-            height: 8rem;
-            padding: .5rem 1rem;
-            opacity: 1;
-            z-index: 0;
-            justify-content: center;
-            overflow: hidden;
-          }
         }
       }
     }

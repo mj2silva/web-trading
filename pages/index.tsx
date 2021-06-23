@@ -1,5 +1,6 @@
 import Benefits from 'components/Benefits';
 import CustomerStories from 'components/CustomerStories/CustomerStories';
+import Faqs from 'components/Faqs';
 import Modules from 'components/Modules';
 import Head from 'next/head';
 import { FC } from 'react';
@@ -17,6 +18,7 @@ const Home: FC = () => (
       <Benefits />
       <Modules />
       <CustomerStories />
+      <Faqs />
     </main>
   </>
 );

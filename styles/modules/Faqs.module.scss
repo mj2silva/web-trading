@@ -1,0 +1,29 @@
+@import '../common/common.scss';
+
+.Faqs {
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 30rem;
+  &_Accordion {
+    margin: 0 auto;
+    width: 35%;
+  }
+  &_Title {
+    height: 5rem;
+    margin-top: 3rem;
+  }
+  &_TitleSub {
+    border-bottom: 5px solid $cl-black;
+  }
+  @media screen and (max-width: $breakpoint-tablet) {
+    &_Accordion {
+      width: 80%;
+    }
+  }
+  @media screen and (max-width: $breakpoint-mobile) {
+    &_Accordion {
+      width: 85%;
+    }
+  }
+} 
