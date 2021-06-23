@@ -1,0 +1,40 @@
+@import '../common/common.scss';
+
+.SocialCard {
+  background-color: $cl-gray-benefits;
+  padding: 1rem;
+  width: 100%;
+  border-radius: 8px;
+  min-height: 22rem;
+  max-width: 28rem;
+  min-width: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  box-sizing: border-box;
+  margin: 1rem 0;
+  &_Logo {
+    position: relative;
+    width: 8rem;
+    height: 8rem;
+  }
+  &_Message {
+    min-height: 5rem;
+    font-size: 1.1rem;
+    font-family: $avenirDemi;
+    width: 85%;
+    text-align: center;
+  }
+  &_Button {
+    background-color: $cl-red;
+    font-size: 1rem;
+    color: $cl-white;
+    font-weight: bold;
+    padding: .8rem .5rem;
+    border-radius: 14px;
+    min-width: 15rem;
+    text-align: center;
+    text-decoration: none;
+  }
+}

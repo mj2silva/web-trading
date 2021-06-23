@@ -1,0 +1,69 @@
+@import '../common/common.scss';
+
+.Form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+  background-color: rgba(255, 255, 255, 0.061);
+  border-radius: 20px;
+  &_Title {
+   font-size: 1.2rem; 
+  }
+  &_Form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  &_Item {
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    width: 100%;
+  }
+  &_Label {
+    display: none;
+  }
+  &_Input {
+    width: 100%;
+    background-color: transparent;
+    color: $cl-white;
+    font-family: inherit;
+    box-sizing: border-box;
+    padding: .5rem;
+    font-size: 1.2rem;
+    border: 2px solid $cl-white;
+    outline: none;
+    border-radius: 8px;
+    margin-bottom: .8rem;
+    &::placeholder {
+      font-family: inherit;
+      color: $cl-white;
+    }
+    & option {
+      color: $cl-black;
+    }
+  }
+  &_Success {
+    font-family: $avenirDemi;
+    margin: 0;
+  }
+  &_SuccessIcon {
+    position: relative;
+    background-color: $cl-success;
+    min-width: 1rem;
+    min-height: 1rem;
+    display: inline-block;
+    padding: .2rem;
+    border-radius: 50%;
+    & img {
+      object-fit: scale-down;
+    }
+  }
+  &_Button {
+    width: fit-content;
+    align-self: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+}

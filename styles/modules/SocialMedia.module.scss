@@ -1,0 +1,32 @@
+@import '../common/common.scss';
+
+.SocialMedia {
+  flex-direction: column;
+  justify-content: space-evenly;
+  &_Title {
+    font-size: 1.5rem;
+  }
+  &_TitleSub {
+    border-bottom: 5px solid $cl-black;
+  }
+  &_Cards {
+    width: 100%;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    & > .SocialMedia_SocialCard {
+      width: 23%;
+    }
+  }
+  @media screen and (max-width: $breakpoint-tablet) {
+    padding: 4rem 0;
+    &_Title {
+      align-self: flex-start;
+      padding: 0 2rem;
+      font-size: 1rem;
+      text-align: start;
+    }
+  }
+}

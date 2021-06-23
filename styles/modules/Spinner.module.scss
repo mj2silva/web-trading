@@ -1,0 +1,44 @@
+@import '../common/common.scss';
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+$small-size: 1rem;
+$medium-size: 2rem;
+$large-size: 3rem;
+
+.Spinner {
+  border-radius: 50%;
+  animation: spin ease 1s infinite;
+  border: 5px solid;
+  &_small {
+    width: $small-size;
+    height: $small-size;
+  }
+  &_medium {
+    width: $medium-size;
+    height: $medium-size;
+  }
+  &_large {
+    width: $large-size;
+    height: $large-size;
+  }
+  &_yellow {
+    border-color: $cl-yellow;
+    border-top-color: $cl-yellow-hover;;
+  }
+  &_green {
+    border-color: $cl-green;
+    border-top-color: $cl-green-hover;;
+  }
+  &_red {
+    border-color: $cl-red;
+    border-top-color: $cl-red-hover;;
+  }
+}
