@@ -7,6 +7,7 @@
     padding: 1rem;
     font-size: 1.2rem;
     color: $cl-white;
+    display: flex;
     &:hover + .Dropdown_Content {
       display: block;
       height: 12rem;
@@ -18,9 +19,14 @@
   }
   &_Arrow {
     color: $cl-white;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
     margin: 0 .5rem;
     transition-duration: 250ms;
+    width: 1rem;
+    height: 1rem;
   }
   &_Content {
     position: absolute;

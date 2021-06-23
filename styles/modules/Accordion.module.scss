@@ -131,6 +131,11 @@
       &_Title {
         font-size: 1.2rem;
       }
+      @media screen and (max-width: $breakpoint-tablet) {
+        &_Title {
+          font-size: 1rem;
+        }
+      }
       &_collapsed {
         background-color: $cl-gray;
         border-radius: 8px;
@@ -186,6 +191,7 @@
     border-radius: 8px;
     display: flex;
     align-items: center;
+    max-width: 80%;
   }
   &_Helper {
     font-size: 2rem;
@@ -244,12 +250,9 @@
       animation: collapse-item ease 250ms forwards;
     }
   }
-
   @media screen and (max-width: $breakpoint-tablet) {
-    & {
-      &_Title {
-        font-size: 1.3rem;
-      }
+    &_Title {
+      font-size: 1rem;
     }
   }
 }

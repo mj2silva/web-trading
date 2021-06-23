@@ -38,6 +38,9 @@
     display: flex;
     justify-content: space-between;
     margin: .5rem 0;
+    & > span:nth-child(1) {
+      max-width: 80%;
+    }
     & > span:nth-child(2) {
       display: flex;
       align-items: center;
