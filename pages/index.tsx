@@ -1,3 +1,4 @@
+import AuthorPresentation from 'components/AuthorPresentation';
 import Benefits from 'components/Benefits';
 import CustomerStories from 'components/CustomerStories/CustomerStories';
 import Faqs from 'components/Faqs';
@@ -19,6 +20,7 @@ const Home: FC = () => (
       <Modules />
       <CustomerStories />
       <Faqs />
+      <AuthorPresentation />
     </main>
   </>
 );
