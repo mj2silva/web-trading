@@ -1,0 +1,23 @@
+@import '../common/common.scss';
+
+.Stars {
+  display: flex;
+  &_Star {
+    font-size: 3rem;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: none;
+    width: 3rem;
+    height: 3rem;
+    color: $cl-grayStar;
+    transition-duration: 200ms;
+    cursor: pointer;
+    &:hover {
+      color: $cl-yellow;
+    }
+    &_active {
+      color: $cl-yellow;
+    }
+  }
+}

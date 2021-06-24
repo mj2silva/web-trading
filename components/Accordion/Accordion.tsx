@@ -43,9 +43,12 @@ const AccordionItemWithListContainer: FC<AccordionListProps> = ({
       secondColumnItems.push(reactItem);
     }
   });
+  const columnClassName = cn(styles.Accordion_Column, {
+    [styles.Accordion_Column_single]: columns === 1,
+  });
   return (
     <>
-      <div className={styles.Accordion_Column}>
+      <div className={columnClassName}>
         { firstColumnItems }
       </div>
       {
@@ -69,18 +72,20 @@ type Props = {
   content: {
     title: string,
     content: ReactNode,
-  }[]
+  }[],
+  columns?: number,
 }
 
 const defaultProps: Partial<Props> = {
   className: undefined,
   contentClassName: undefined,
   type: 'normal',
+  columns: 0,
 };
 
 const Accordion: FC<Props> = (props: Props) => {
   const {
-    className, type, content, contentClassName,
+    className, type, content, contentClassName, columns,
   } = props;
   const accordionClassName = cn(
     styles.Accordion, {
@@ -103,7 +108,7 @@ const Accordion: FC<Props> = (props: Props) => {
               handleOpen={handleOpen}
               openedId={openedId}
               content={content}
-              columns={type === 'with-list' ? 2 : 1}
+              columns={columns || (type === 'with-list' ? 2 : 1)}
             />
           )
           : content.map((item, index) => (

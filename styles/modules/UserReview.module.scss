@@ -1,0 +1,43 @@
+@import '../common/common.scss';
+
+.UserReview {
+  flex-direction: column;
+  background-color: $cl-gray-benefits;
+  &_Title {
+    font-size: 1.2rem;
+    width: 24%;
+    min-width: 20rem;
+    text-align: center;
+    margin: 0;
+  }
+  &_Rating {
+    margin: 1rem 0;
+  }
+  &_Form {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+  }
+  &_Textarea {
+    border: 2px solid $cl-black;
+    border-radius: 10px;
+    outline: none;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    font-family: inherit;
+  }
+  &_Button {
+    font-weight: bold;
+    width: fit-content;
+    align-self: center;
+    font-size: 1.3rem;
+    padding: 1rem 2rem;
+    min-width: 10rem;
+    border-radius: 15px;
+  }
+  @media screen and (max-width: $breakpoint-tablet) {
+    &_Form {
+      width: 80%;
+    }
+  }
+}

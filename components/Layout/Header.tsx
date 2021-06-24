@@ -24,8 +24,8 @@ const Header: FC = () => {
   });
 
   const headerClassName = cn(styles.Header, {
-    [styles.Header_transparent]: isTop,
-    [styles.Header_black]: !isTop || user,
+    [styles.Header_transparent]: isTop && !user,
+    [styles.Header_black]: !isTop && !user,
   });
 
   const toggleNavOpen = (): void => setNavIsOpen((isOpen) => !isOpen);

@@ -1,7 +1,8 @@
 import CustomerStories from 'components/CustomerStories/CustomerStories';
-import CourseView from 'components/Layout/CourseView';
+import CourseView from 'components/CourseView';
 import Head from 'next/head';
 import { FC } from 'react';
+import UserReview from 'components/UserReview';
 
 const Course: FC = () => (
   <>
@@ -13,6 +14,7 @@ const Course: FC = () => (
     <main>
       <CourseView />
       <CustomerStories />
+      <UserReview />
     </main>
   </>
 );
