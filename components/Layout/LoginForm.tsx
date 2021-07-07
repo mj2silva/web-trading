@@ -2,13 +2,12 @@ import {
   ChangeEventHandler, FC, FormEventHandler, useContext, useState,
 } from 'react';
 import cn from 'classnames';
-import { useRouter } from 'next/dist/client/router';
 import styles from '@styles/LoginForm.module.scss';
+import Spinner from 'components/Spinner';
 import { UserContext } from './UserProvider';
 
 const LoginForm: FC = () => {
-  const { signIn, error } = useContext(UserContext);
-  const { push } = useRouter();
+  const { signIn, error, isLoading } = useContext(UserContext);
   const [formValues, setFormValues] = useState({
     email: '',
     password: '',
@@ -19,12 +18,9 @@ const LoginForm: FC = () => {
       [event.target.name]: event.target.value,
     });
   };
-  const login: FormEventHandler<HTMLFormElement> = (event): void => {
+  const login: FormEventHandler<HTMLFormElement> = async (event): Promise<void> => {
     event.preventDefault();
-    if (signIn) {
-      signIn(formValues.email, formValues.password);
-      push('/curso');
-    }
+    if (signIn) await signIn(formValues.email, formValues.password);
   };
   return (
     <div className={styles.LoginForm}>
@@ -57,9 +53,9 @@ const LoginForm: FC = () => {
         <a className={styles.LoginForm_ForgotPasswordLink} href="#">
           ¿Olvidaste la contraseña?
         </a>
-        { error && <span>{ error }</span>}
+        { error && <span className={styles.LoginForm_Error}>{ error }</span>}
         <button className={cn('button', styles.LoginForm_Button)} type="submit">
-          ENVIAR
+          {isLoading ? <Spinner /> : 'ENVIAR'}
         </button>
       </form>
     </div>

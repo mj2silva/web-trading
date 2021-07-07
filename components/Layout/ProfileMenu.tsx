@@ -27,9 +27,9 @@ const ProfileMenu: FC<Props> = (props: Props) => {
       <div className={dropdownClassName}>
         <div className={styles.ProfileMenu_Picture}>
           <img
-            src={user.pictureUrl}
+            src={user.photoURL || '/img/profesor.png'}
             className="image"
-            alt={`${user?.name} profile`}
+            alt={`${user?.displayName} profile`}
           />
         </div>
         <span className={dropdownStyles.Dropdown_Arrow}>
@@ -38,17 +38,17 @@ const ProfileMenu: FC<Props> = (props: Props) => {
       </div>
       <div className={dropdownContentClassName}>
         <div className={styles.ProfileMenu_OptionsPicture}>
-          <img src={user.pictureUrl} className="image" alt={`${user?.name} profile`} />
+          <img src={user.photoURL || '/img/profesor.png'} className="image" alt={`${user?.displayName} profile`} />
         </div>
         <div className={styles.ProfileMenu_Username}>
           @
-          {user.name}
+          {user.displayName}
         </div>
         <h3 className={styles.ProfileMenu_Names}>
-          {user.name}
+          {user.displayName}
         </h3>
         <h3 className={styles.ProfileMenu_LastNames}>
-          {user.name}
+          {user.displayName}
         </h3>
         <button type="button" className={buttonClassName}>EDITAR PERFIL</button>
         <button type="button" className={buttonClassName}>CAMBIAR CONTRASEÑA</button>

@@ -1,17 +1,13 @@
 import {
-  createContext, FC, ReactNode, useState,
+  createContext, FC, ReactNode,
 } from 'react';
-
-type User = {
-  email: string,
-  name?: string,
-  pictureUrl?: string,
-} | null;
+import { User } from 'lib/types';
+import useUser from 'lib/hooks/useUser';
 
 type ContextProps = {
   user?: User,
-  signIn?: (email: string, password: string) => Promise<void> | void,
-  signOut?: () => Promise<void> | void,
+  signIn?: (email: string, password: string) => Promise<void>,
+  signOut?: () => Promise<void>,
   error?: string,
   isLoading: boolean,
 }
@@ -30,23 +26,13 @@ type Props = {
 
 const UserProvider: FC<Props> = (props: Props) => {
   const { children } = props;
-  const [user, setUser] = useState<User>(null);
-  const [error, setError] = useState<string>();
-  const [isLoading, setIsLoading] = useState(false);
-  const signIn = (email: string, password: string): void => {
-    setIsLoading(true);
-    if (password === '123456') {
-      setUser({ email, name: email.split('@')[0], pictureUrl: '/img/profesor.png' });
-      setError(undefined);
-    } else {
-      setUser(null);
-      setError('Usuario y/o contraseña inválidos');
-    }
-    setIsLoading(false);
-  };
-  const signOut = (): void => {
-    setUser(null);
-  };
+  const {
+    user,
+    signIn,
+    signOut,
+    isLoading,
+    error,
+  } = useUser();
   return (
     <UserContext.Provider
       value={{
