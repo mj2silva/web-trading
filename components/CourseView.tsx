@@ -132,7 +132,6 @@ const modulesListAccordionContent = modulesList.map((item) => ({
 
 const CourseView: FC = () => {
   const courseViewClassName = cn('section', styles.CourseView);
-  const linkClassName = cn('link', styles.CourseView_GoBack);
   return (
     <section className={courseViewClassName}>
       <div className={styles.CourseView_Container}>

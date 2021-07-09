@@ -10,6 +10,8 @@ type Props = {
     message: string,
     buttonText: string,
     cardName?: string,
+    href?: string,
+    isBlank?: boolean,
   },
 }
 
@@ -29,8 +31,8 @@ const SocialCard: FC<Props> = (props: Props) => {
       <div className={styles.SocialCard_Message}>
         { content.message }
       </div>
-      <Link href="#">
-        <a className={buttonClassName}>
+      <Link href={content?.href || '#'}>
+        <a target={content?.isBlank ? '_blank' : undefined} rel={content?.isBlank ? 'noreferrer' : undefined} className={buttonClassName}>
           { content.buttonText }
         </a>
       </Link>

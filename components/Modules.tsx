@@ -1,130 +1,27 @@
 import { FC } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
+import { Module } from 'lib/types';
 import cn from 'classnames';
 import styles from '@styles/Modules.module.scss';
+import { capitalizeFirst } from 'lib/utils';
 import Accordion from './Accordion/Accordion';
 
-const Modules: FC = () => {
-  const modulesList = [
-    {
-      title: 'Módulo 1',
-      moduleItems: [
-        'Introducción',
-        'Broker: ¿Qué es? ¿Cuál uso? ¿Cómo aperturar MT4?',
-        'Exchanges y Wallets',
-        'TradingView',
-      ],
-    },
-    {
-      title: 'Módulo 2',
-      moduleItems: [
-        'Introducción',
-        'Broker: ¿Qué es? ¿Cuál uso? ¿Cómo aperturar MT4?',
-        'Exchanges y Wallets',
-        'TradingView',
-      ],
-    },
-    {
-      title: 'Módulo 3',
-      moduleItems: [
-        'Introducción',
-        'Broker: ¿Qué es? ¿Cuál uso? ¿Cómo aperturar MT4?',
-        'Exchanges y Wallets',
-        'TradingView',
-      ],
-    },
-    {
-      title: 'Módulo 4',
-      moduleItems: [
-        'Introducción',
-        'Broker: ¿Qué es? ¿Cuál uso? ¿Cómo aperturar MT4?',
-        'Exchanges y Wallets',
-        'TradingView',
-      ],
-    },
-    {
-      title: 'Módulo 4',
-      moduleItems: [
-        'Introducción',
-        'Broker: ¿Qué es? ¿Cuál uso? ¿Cómo aperturar MT4?',
-        'Exchanges y Wallets',
-        'TradingView',
-      ],
-    },
-    {
-      title: 'Módulo 4',
-      moduleItems: [
-        'Introducción',
-        'Broker: ¿Qué es? ¿Cuál uso? ¿Cómo aperturar MT4?',
-        'Exchanges y Wallets',
-        'TradingView',
-      ],
-    },
-    {
-      title: 'Módulo 4',
-      moduleItems: [
-        'Introducción',
-        'Broker: ¿Qué es? ¿Cuál uso? ¿Cómo aperturar MT4?',
-        'Exchanges y Wallets',
-        'TradingView',
-      ],
-    },
-    {
-      title: 'Módulo 4',
-      moduleItems: [
-        'Introducción',
-        'Broker: ¿Qué es? ¿Cuál uso? ¿Cómo aperturar MT4?',
-        'Exchanges y Wallets',
-        'TradingView',
-      ],
-    },
-    {
-      title: 'Módulo 4',
-      moduleItems: [
-        'Introducción',
-        'Broker: ¿Qué es? ¿Cuál uso? ¿Cómo aperturar MT4?',
-        'Exchanges y Wallets',
-        'TradingView',
-      ],
-    },
-    {
-      title: 'Módulo 4',
-      moduleItems: [
-        'Introducción',
-        'Broker: ¿Qué es? ¿Cuál uso? ¿Cómo aperturar MT4?',
-        'Exchanges y Wallets',
-        'TradingView',
-      ],
-    },
-    {
-      title: 'Módulo 4',
-      moduleItems: [
-        'Introducción',
-        'Broker: ¿Qué es? ¿Cuál uso? ¿Cómo aperturar MT4?',
-        'Exchanges y Wallets',
-        'TradingView',
-      ],
-    },
-    {
-      title: 'Módulo 4',
-      moduleItems: [
-        'Introducción',
-        'Broker: ¿Qué es? ¿Cuál uso? ¿Cómo aperturar MT4?',
-        'Exchanges y Wallets',
-        'TradingView',
-      ],
-    },
-  ];
+type Props = {
+  modules: Module[],
+}
+
+const Modules: FC<Props> = (props: Props) => {
+  const { modules: modulesList } = props;
   const modulesListAccordionContent = modulesList.map((item) => ({
-    title: item.title,
-    content: item.moduleItems.map((moduleItem, index) => (
+    title: capitalizeFirst(item.name),
+    content: item.classes?.map((moduleItem, index) => (
       <li key={`mod-item-acc-${index + 1}`} className={styles.ModuleAbstract_Topic}>
         <span className={styles.ModuleAbstract_TopicName}>
           {index + 1}
           .
           {' '}
-          { moduleItem }
+          { moduleItem.name }
         </span>
         <span className={styles.ModuleAbstract_Icon}>
           <FontAwesomeIcon icon={faLock} />

@@ -29,21 +29,21 @@ const Footer: FC = () => (
           ¡Cambia tu forma de ver los gráficos!
         </h3>
         <div className={styles.Footer_SocialLogos}>
-          <div className={styles.Footer_SocialLogo}>
+          <a href="#" target="_blank" className={styles.Footer_SocialLogo}>
             <FontAwesomeIcon icon={faFacebookF} />
-          </div>
-          <div className={styles.Footer_SocialLogo}>
+          </a>
+          <a href="https://vm.tiktok.com/ZMduAAhbY/" target="_blank" rel="noreferrer" className={styles.Footer_SocialLogo}>
             <FontAwesomeIcon icon={faTiktok} />
-          </div>
-          <div className={styles.Footer_SocialLogo}>
+          </a>
+          <a href="https://t.me/joinchat/mOg3RL3bdqMyMGU5" target="_blank" rel="noreferrer" className={styles.Footer_SocialLogo}>
             <FontAwesomeIcon icon={faTelegramPlane} />
-          </div>
-          <div className={styles.Footer_SocialLogo}>
+          </a>
+          <a href="#" target="_blank" className={styles.Footer_SocialLogo}>
             <FontAwesomeIcon icon={faInstagram} />
-          </div>
-          <div className={styles.Footer_SocialLogo}>
+          </a>
+          <a href="#" target="_blank" className={styles.Footer_SocialLogo}>
             <FontAwesomeIcon icon={faYoutube} />
-          </div>
+          </a>
         </div>
       </div>
     </div>
