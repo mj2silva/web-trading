@@ -42,13 +42,13 @@ const ProfileMenu: FC<Props> = (props: Props) => {
         </div>
         <div className={styles.ProfileMenu_Username}>
           @
-          {user.displayName}
+          {user.username}
         </div>
         <h3 className={styles.ProfileMenu_Names}>
-          {user.displayName}
+          {user.names}
         </h3>
         <h3 className={styles.ProfileMenu_LastNames}>
-          {user.displayName}
+          {user.lastNames}
         </h3>
         <button type="button" className={buttonClassName}>EDITAR PERFIL</button>
         <button type="button" className={buttonClassName}>CAMBIAR CONTRASEÑA</button>

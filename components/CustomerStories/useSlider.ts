@@ -1,8 +1,11 @@
-import { useCallback, useEffect, useState } from 'react';
+import {
+  RefObject, useCallback, useEffect, useState,
+} from 'react';
 
 type UseSliderProps = {
   auto?: boolean,
   totalPages?: number,
+  ref?: RefObject<HTMLDivElement>,
 }
 
 type UseSliderReturn = {
@@ -13,7 +16,7 @@ type UseSliderReturn = {
 }
 
 const useSlider = (props: UseSliderProps): UseSliderReturn => {
-  const { auto, totalPages = 0 } = props;
+  const { auto, totalPages = 0, ref } = props;
   const [currentStep, setCurrentStep] = useState(0);
   const [timeoutId, setTimeoutId] = useState<number>();
 
@@ -56,13 +59,31 @@ const useSlider = (props: UseSliderProps): UseSliderReturn => {
   };
 
   useEffect(() => {
-    if (auto && !timeoutId) {
-      const intervalId: number = window.setInterval(() => {
-        goNext();
-      }, 2000);
-      setTimeoutId(intervalId);
+    const observer = new IntersectionObserver((entries) => {
+      const [entry] = entries;
+      if (entry.isIntersecting) {
+        if (!timeoutId) {
+          const intervalId: number = window.setInterval(() => {
+            goNext();
+          }, 2000);
+          setTimeoutId(intervalId);
+        }
+      } else {
+        clearInterval(timeoutId);
+        setTimeoutId(undefined);
+      }
+    }, { threshold: 0.25 });
+    const currentRef = ref?.current;
+    if (auto) {
+      if (currentRef) observer.observe(currentRef);
     }
-  }, [auto, timeoutId, goNext]);
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+        clearInterval(timeoutId);
+      }
+    };
+  }, [auto, goNext, ref, timeoutId]);
 
   return {
     currentStep,

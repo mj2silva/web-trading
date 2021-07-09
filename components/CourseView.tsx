@@ -3,6 +3,7 @@ import cn from 'classnames';
 import styles from '@styles/CourseView.module.scss';
 import moduleAbstractStyles from '@styles/Modules.module.scss';
 import Accordion from './Accordion/Accordion';
+import VimeoVideo from './VimeoVideo';
 
 const modulesList = [
   {
@@ -135,22 +136,7 @@ const CourseView: FC = () => {
   return (
     <section className={courseViewClassName}>
       <div className={styles.CourseView_Container}>
-        <div className={styles.CourseView_VideoColumn}>
-          <a href="/" className={linkClassName}>
-            {'<'}
-            Regresar a inicio
-          </a>
-          <iframe
-            width="560"
-            height="400"
-            src="https://www.youtube.com/embed/0R9R4U0ZHy4"
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            className={styles.CourseView__video}
-            allowFullScreen
-          />
-        </div>
+        <VimeoVideo />
         <div className={styles.CourseView_NavColumn}>
           <h2 className={styles.CourseView_NavTitle}>
             <span className={styles.CourseView_TitleSub}>MÓDULOS</span>

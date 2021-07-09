@@ -71,6 +71,7 @@ const StarsRating: FC<Props> = (props: Props) => {
         [...Array(starsNumber)].map((_, index) => (
           <Star
             id={index}
+            key={`star-${index + 1}`}
             currentRating={rating}
             focusedRating={focusedRating}
             onClick={handleClick}

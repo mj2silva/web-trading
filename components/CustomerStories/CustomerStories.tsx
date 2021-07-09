@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useRef } from 'react';
 import cn from 'classnames';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -31,13 +31,14 @@ const CustomerStories: FC = () => {
     },
   ];
   const storieClassName = cn(styles.CustomerStories_Storie);
+  const customerStoriesRef = useRef<HTMLDivElement>(null);
 
   const {
     currentStep, goToNextPage, goToPreviousPage, goToPage,
-  } = useSlider({ auto: true, totalPages: stories.length });
+  } = useSlider({ auto: true, totalPages: stories.length, ref: customerStoriesRef });
 
   return (
-    <section className={cn('section', styles.CustomerStories)}>
+    <section ref={customerStoriesRef} className={cn('section', styles.CustomerStories)}>
       <span className="target" id="testimonios" />
       <div className={styles.CustomerStories_Title}>
         <div className={styles.CustomerStories_Icon}>

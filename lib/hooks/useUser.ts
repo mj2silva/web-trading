@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { auth } from 'lib/firebase';
 import { User } from 'lib/types';
+import { getUser } from 'lib/repository/usersRepository';
 
 type UseUserReturn = {
   user: User,
@@ -36,14 +37,17 @@ const useUser = (): UseUserReturn => {
   };
   useEffect(() => {
     auth.onAuthStateChanged((newUser) => {
-      setUser(newUser);
+      let cancelSub;
+      if (newUser) {
+        cancelSub = getUser(newUser, setUser);
+      } else {
+        setUser(null);
+      }
       setIsLoading(false);
+      return cancelSub;
     });
   }, []);
 
-  useEffect(() => {
-    console.log({ isLoading });
-  }, [isLoading]);
   return {
     signIn,
     signOut,
