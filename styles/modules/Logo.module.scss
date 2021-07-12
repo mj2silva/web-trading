@@ -6,6 +6,7 @@
   max-width: 12rem;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
   &_Image {
     position: relative;
     min-width: 4rem;
@@ -19,6 +20,7 @@
     font-size: 1.1rem;
     margin: 0 .5rem;
     color: $cl-white;
+    text-decoration: none;
   }
   &_black {
     & .Logo {

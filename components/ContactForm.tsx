@@ -4,6 +4,8 @@ import {
 } from 'react';
 import cn from 'classnames';
 import styles from '@styles/Form.module.scss';
+import { PreRegisteredUser } from 'lib/types';
+import { preRegisterUser } from 'lib/repository/modulesRepository';
 import Spinner from './Spinner';
 
 type Props = {
@@ -12,19 +14,6 @@ type Props = {
 
 const defaultProps: Partial<Props> = {
   className: undefined,
-};
-
-const preInscription = async (names: string, email: string, country: string): Promise<void> => {
-  const sendPreInscription = new Promise<void>((resolve, reject) => {
-    if (/^[A-zÀ-ú ]+$/.test(names)) {
-      setTimeout(() => {
-        resolve(alert(JSON.stringify({ email, names, country }, null, 2)));
-      }, 1500);
-    } else {
-      reject(alert(JSON.stringify('Los datos no son válidos', null, 2)));
-    }
-  });
-  return sendPreInscription;
 };
 
 const ContactForm: FC<Props> = (props: Props) => {
@@ -58,7 +47,12 @@ const ContactForm: FC<Props> = (props: Props) => {
     event.preventDefault();
     setIsSubmitting(true);
     try {
-      await preInscription(formValues.names, formValues.email, formValues.country);
+      const preRegisteredUser: PreRegisteredUser = {
+        fullName: formValues.names,
+        email: formValues.email,
+        country: formValues.country,
+      };
+      await preRegisterUser(preRegisteredUser);
       setSuccess(true);
       setError(undefined);
     } catch (err) {

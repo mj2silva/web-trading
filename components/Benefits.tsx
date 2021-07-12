@@ -2,46 +2,19 @@ import { FC } from 'react';
 import cn from 'classnames';
 import styles from '@styles/Benefits.module.scss';
 import titleStyles from '@styles/Title.module.scss';
+import { CourseBenefits } from 'lib/types';
 import Accordion from './Accordion/Accordion';
 
-const Benefits: FC = () => {
-  const benefitsList = [
-    {
-      title: 'Certificado',
-      content: 'En este programa obtendrás información clave procesada y explicada '
-        + 'paso a paso para que logres gestionar tus inversiones de forma efectiva.',
-    },
-    {
-      title: '12 módulos de video',
-      content: 'En este programa obtendrás información clave procesada y explicada '
-      + 'paso a paso para que logres gestionar tus inversiones de forma efectiva.',
-    },
-    {
-      title: '12 módulos de video',
-      content: 'En este programa obtendrás información clave procesada y explicada '
-      + 'paso a paso para que logres gestionar tus inversiones de forma efectiva.',
-    },
-    {
-      title: '12 módulos de video',
-      content: 'En este programa obtendrás información clave procesada y explicada '
-      + 'paso a paso para que logres gestionar tus inversiones de forma efectiva.',
-    },
-    {
-      title: '12 módulos de video',
-      content: 'En este programa obtendrás información clave procesada y explicada '
-      + 'paso a paso para que logres gestionar tus inversiones de forma efectiva.',
-    },
-    {
-      title: '12 módulos de video',
-      content: 'En este programa obtendrás información clave procesada y explicada '
-      + 'paso a paso para que logres gestionar tus inversiones de forma efectiva.',
-    },
-    {
-      title: '12 módulos de video',
-      content: 'En este programa obtendrás información clave procesada y explicada '
-      + 'paso a paso para que logres gestionar tus inversiones de forma efectiva.',
-    },
-  ];
+type Props = {
+  benefitsList: CourseBenefits[];
+};
+
+const Benefits: FC<Props> = ({ benefitsList } : Props) => {
+  const accordionContent = benefitsList?.map((benefit) => ({
+    title: benefit.name,
+    content: benefit.description,
+  }));
+
   return (
     <section className={cn('section', styles.Benefits)}>
       <span className="target" id="beneficios" />
@@ -55,7 +28,7 @@ const Benefits: FC = () => {
       <div className={styles.Benefits_Body}>
         <div className={styles.Benefits_Content}>
           <h2 className={styles.Benefits_ContentTitle}>BENEFICIOS</h2>
-          <Accordion content={benefitsList} className={styles.Benefits_Accordion} />
+          <Accordion content={accordionContent} className={styles.Benefits_Accordion} />
         </div>
         <div className={styles.Benefits_Image}>
           <img

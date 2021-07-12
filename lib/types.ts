@@ -20,3 +20,22 @@ export type Module = {
   name: string,
   classes?: ModuleClass[],
 };
+
+export type CourseBenefits = {
+  id?: string,
+  name: string,
+  description?:string,
+};
+
+export type Faq = {
+  id?: string,
+  question: string,
+  answer?:string,
+}
+
+export type PreRegisteredUser = {
+  id?: string,
+  fullName: string,
+  email: string,
+  country: string,
+}

@@ -6,6 +6,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import styles from '@styles/Footer.module.scss';
 import Logo from './Logo';
+import PrivacyPoliciesButton from './PrivacyPoliciesButton';
 
 const Footer: FC = () => (
   <footer className={styles.Footer}>
@@ -49,7 +50,7 @@ const Footer: FC = () => (
     </div>
     <div className={styles.Footer_Foot}>
       <div className={styles.Footer_Legal}>
-        <a className={cn('link', styles.Footer_Link)} href="#">POLITICAS DE PRIVACIDAD</a>
+        <PrivacyPoliciesButton className={cn('link', styles.Footer_Link)} />
         {' '}
         |
         {' '}

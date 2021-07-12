@@ -5,8 +5,8 @@ import CustomerStories from 'components/CustomerStories/CustomerStories';
 import Faqs from 'components/Faqs';
 import Modules from 'components/Modules';
 import SocialMedia from 'components/SocialMedia';
-import { getPublicModules } from 'lib/repository/modulesRepository';
-import { Module } from 'lib/types';
+import { getCourseBenefits, getFaqs, getPublicModules } from 'lib/repository/modulesRepository';
+import { CourseBenefits, Faq, Module } from 'lib/types';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import { FC } from 'react';
@@ -14,17 +14,21 @@ import Presentation from '../components/Presentation';
 
 export const getStaticProps: GetStaticProps = async () => {
   const publicModules = await getPublicModules();
+  const benefitsList = await getCourseBenefits();
+  const faqsList = await getFaqs();
   return {
-    props: { publicModules },
+    props: { publicModules, benefitsList, faqsList },
     revalidate: 1000,
   };
 };
 
 type Props = {
   publicModules: Module[],
+  benefitsList: CourseBenefits[],
+  faqsList: Faq[],
 }
 
-const Home: FC<Props> = ({ publicModules }: Props) => (
+const Home: FC<Props> = ({ publicModules, benefitsList, faqsList }: Props) => (
   <>
     <Head>
       <title>Trading para Ti</title>
@@ -33,10 +37,10 @@ const Home: FC<Props> = ({ publicModules }: Props) => (
     </Head>
     <main>
       <Presentation />
-      <Benefits />
+      <Benefits benefitsList={benefitsList} />
       <Modules modules={publicModules} />
       <CustomerStories />
-      <Faqs />
+      <Faqs faqsList={faqsList} />
       <AuthorPresentation />
       <SocialMedia />
       <Contact />

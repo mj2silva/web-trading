@@ -1,24 +1,19 @@
 import { FC } from 'react';
 import cn from 'classnames';
 import styles from '@styles/Faqs.module.scss';
+import { Faq } from 'lib/types';
 import Accordion from './Accordion/Accordion';
 
-const Faqs: FC = () => {
+type Props = {
+  faqsList: Faq[],
+};
+
+const Faqs: FC<Props> = ({ faqsList }: Props) => {
   const className = cn('section', styles.Faqs);
-  const faqsList = [
-    {
-      title: '¿Tengo acceso ilimitado a las clases?',
-      content: 'Lorem ipsum sit amet',
-    },
-    {
-      title: '¿Cuando inicia el curso?',
-      content: 'Lorem ipsum sit amet',
-    },
-    {
-      title: '¿Cómo me inscribo al curso?',
-      content: 'Lorem ipsum sit amet',
-    },
-  ];
+  const accordionContent = faqsList.map((faq) => ({
+    title: faq.question,
+    content: faq.answer,
+  }));
   return (
     <section className={className}>
       <span className="target" id="faqs" />
@@ -34,7 +29,7 @@ const Faqs: FC = () => {
       <Accordion
         type="list-one-column"
         className={styles.Faqs_Accordion}
-        content={faqsList}
+        content={accordionContent}
       />
     </section>
   );

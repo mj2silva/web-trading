@@ -1,8 +1,13 @@
 import { firestore } from 'lib/firebase';
-import { Module, ModuleClass } from 'lib/types';
+import {
+  CourseBenefits, Faq, Module, ModuleClass, PreRegisteredUser,
+} from 'lib/types';
 
 const modulesCollection = 'courseModules';
 const classesCollection = 'moduleClasses';
+const benefitsCollection = 'courseBenefits';
+const faqsCollection = 'courseFaqs';
+const preRegisteredUsersCollection = 'preRegisteredUsers';
 
 export const getPublicModuleClasses = async (moduleId: string = ''): Promise<ModuleClass[]> => {
   if (moduleId) {
@@ -52,4 +57,40 @@ export const getPublicModules = async (): Promise<Module[]> => {
   );
   const modules = await Promise.all(modulesPromises);
   return modules;
+};
+
+export const getCourseBenefits = async (): Promise<CourseBenefits[]> => {
+  const benefitsCollectionRef = firestore.collection(benefitsCollection);
+  const benefitsCollectionResponse = await benefitsCollectionRef.get();
+  const benefits: CourseBenefits[] = [];
+  benefitsCollectionResponse.forEach((benefitDocument) => {
+    const benefitData = benefitDocument.data();
+    benefits.push({
+      id: benefitDocument.id,
+      name: benefitData.name,
+      description: benefitData.description,
+    });
+  });
+  return benefits;
+};
+
+export const getFaqs = async (): Promise<Faq[]> => {
+  const faqsCollectionRef = firestore.collection(faqsCollection);
+  const faqsCollectionResponse = await faqsCollectionRef.get();
+  const faqs: Faq[] = [];
+  faqsCollectionResponse.forEach((faqDocument) => {
+    const faqData = faqDocument.data();
+    faqs.push({
+      id: faqDocument.id,
+      question: faqData.question,
+      answer: faqData.answer,
+    });
+  });
+  return faqs;
+};
+
+export const preRegisterUser = async (newUserData: PreRegisteredUser): Promise<void> => {
+  const preRegisteredUsersCollectionRef = firestore.collection(preRegisteredUsersCollection);
+  const preRegisteredUserDoc = preRegisteredUsersCollectionRef.doc();
+  await preRegisteredUserDoc.set(newUserData);
 };
