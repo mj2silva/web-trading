@@ -14,6 +14,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.15.3",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",
+    "@netlify/plugin-nextjs": "^3.7.0",
     "@types/react-modal": "^3.12.0",
     "@types/vimeo": "^2.1.4",
     "@types/vimeo__player": "^2.10.1",
