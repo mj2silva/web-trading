@@ -3,7 +3,7 @@
  */
 
 const nextConfig = {
-  target: 'serverless',
+  target: 'experimental-serverless-trace',
 };
 
 module.exports = nextConfig;
