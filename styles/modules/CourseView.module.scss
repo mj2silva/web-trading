@@ -13,12 +13,16 @@
     background-color: $cl-gray-benefits;
   }
   &_VideoColumn {
-    width: 68%;
+    width: 50%;
+    min-height: 20rem;
     align-self: flex-end;
   }
   &_NavColumn {
-    width: 30%;
+    width: 35%;
     padding-left: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   &_Accordion {
     max-height: 25rem;
@@ -52,8 +56,10 @@
       margin: 0;
     }
     &_VideoColumn {
-      width: 90%;
+      width: 100%;
       align-self: center;
+      min-height: 0;
+      margin-bottom: 1rem;
     }
     &_Video {
       border-right: none;
@@ -61,7 +67,7 @@
       min-height: 5rem;
     }
     &_NavColumn {
-      width: 90%;
+      width: 100%;
       padding-left: 0;
     }
   }

@@ -48,9 +48,17 @@
     margin-top: .5rem;
     font-size: 1.2rem;
   }
+  &_Link {
+    color: $cl-red;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
   @media screen and (max-width: $breakpoint-tablet) {
     height: 100%;
     position: relative;
+    width: 100%;
+    overflow: hidden;
     &_Selector {
       display: none;
     }
@@ -60,7 +68,8 @@
       text-align: center;
       height: 100%;
       justify-content: space-evenly;
-      overflow-y: scroll;
+      overflow: hidden;
+      overflow-y: auto;
       padding: 5rem 0;
       right: 0;
       & * {
@@ -75,6 +84,12 @@
       display: block;
       margin-left: auto;
       margin-right: auto;
+    }
+    &_Link {
+      color: $cl-white;
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 }

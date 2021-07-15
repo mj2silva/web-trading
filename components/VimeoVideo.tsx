@@ -19,7 +19,7 @@ const VimeoVideo: FC = () => {
       setIsLoading(true);
       const videoPlayer = new VimeoPlayer(playerRef.current, {
         url: 'https://player.vimeo.com/video/571892654',
-        responsive: false,
+        responsive: true,
         maxheight: 500,
         maxwidth: 700,
       });
