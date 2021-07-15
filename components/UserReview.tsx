@@ -10,7 +10,7 @@ const UserReview: FC = () => {
       <h3 className={styles.UserReview_Title}>
         Cuéntanos tu experiencia, dudas o aportes sobre el curso:
       </h3>
-      <StarsRating starsNumber={6} className={styles.UserReview_Rating} />
+      <StarsRating starsNumber={5} className={styles.UserReview_Rating} />
       <form className={styles.UserReview_Form}>
         <textarea name="comment" rows={10} className={styles.UserReview_Textarea} placeholder="Comentarios" />
         <button type="button" className={cn('button', styles.UserReview_Button)}>ENVIAR</button>

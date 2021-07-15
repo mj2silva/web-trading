@@ -47,10 +47,16 @@
     & .Accordion_Content {
       margin: 0;
       padding: .5rem 1rem;
+      & > ul {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+      }
     }
     & .Accordion_Column {
       width: 49%;
       &_single {
+        overflow-y: scroll;
         width: 100%;
       }
     }

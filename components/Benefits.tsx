@@ -33,7 +33,7 @@ const Benefits: FC<Props> = ({ benefitsList } : Props) => {
         <div className={styles.Benefits_Image}>
           <img
             className="image"
-            src="/img/monitor.png"
+            src="/img/tablet.png"
             alt="Imagen de acompañamiento de sección beneficios"
           />
         </div>

@@ -1,0 +1,35 @@
+@import '../common/common.scss';
+
+@keyframes logo-loading {
+  0% {
+    transform: scale(.8);
+    opacity: 0.2;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(.8);
+    opacity: 0.2;
+  }
+}
+
+.LoadingScreen {
+  &_Container {
+    background-color: $cl-black;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $cl-white;
+    position: relative;
+    flex-direction: column;
+  }
+  &_Logo {
+    position: relative;
+    width: 5rem;
+    height: 5rem;
+    animation: logo-loading ease 2s infinite;
+  }
+}

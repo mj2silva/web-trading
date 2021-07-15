@@ -25,18 +25,11 @@ const ContactForm: FC<Props> = (props: Props) => {
   const [formValues, setFormValues] = useState({
     names: '',
     email: '',
-    country: 'none',
+    country: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    setFormValues({
-      ...formValues,
-      [event.target.name]: event.target.value,
-    });
-  };
-
-  const handleSelectChange: ChangeEventHandler<HTMLSelectElement> = (event) => {
     setFormValues({
       ...formValues,
       [event.target.name]: event.target.value,
@@ -93,20 +86,15 @@ const ContactForm: FC<Props> = (props: Props) => {
             />
           </label>
           <label htmlFor="country" className={styles.Form_Item}>
-            <span className={styles.Form_Label}>Nombres y Apellidos</span>
-            <select
+            <span className={styles.Form_Label}>País</span>
+            <input
               name="country"
-              onChange={handleSelectChange}
+              value={formValues.country}
+              onChange={handleChange}
+              type="text"
               className={styles.Form_Input}
               placeholder="País"
-              value={formValues.country}
-            >
-              <option disabled value="none">País</option>
-              <option value="Argentina">Argentina</option>
-              <option value="Chile">Chile</option>
-              <option value="Colombia">Colombia</option>
-              <option value="Perú">Perú</option>
-            </select>
+            />
           </label>
           { success && (
           <h4 className={styles.Form_Success}>

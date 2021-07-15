@@ -2,136 +2,35 @@ import { FC } from 'react';
 import cn from 'classnames';
 import styles from '@styles/CourseView.module.scss';
 import moduleAbstractStyles from '@styles/Modules.module.scss';
+import { Module } from 'lib/types';
+import Link from 'next/link';
 import Accordion from './Accordion/Accordion';
 import VimeoVideo from './VimeoVideo';
 
-const modulesList = [
-  {
-    title: 'Módulo 1',
-    moduleItems: [
-      'Introducción',
-      'Broker: ¿Qué es? ¿Cuál uso? ¿Cómo aperturar MT4?',
-      'Exchanges y Wallets',
-      'TradingView',
-    ],
-  },
-  {
-    title: 'Módulo 2',
-    moduleItems: [
-      'Introducción',
-      'Broker: ¿Qué es? ¿Cuál uso? ¿Cómo aperturar MT4?',
-      'Exchanges y Wallets',
-      'TradingView',
-    ],
-  },
-  {
-    title: 'Módulo 3',
-    moduleItems: [
-      'Introducción',
-      'Broker: ¿Qué es? ¿Cuál uso? ¿Cómo aperturar MT4?',
-      'Exchanges y Wallets',
-      'TradingView',
-    ],
-  },
-  {
-    title: 'Módulo 4',
-    moduleItems: [
-      'Introducción',
-      'Broker: ¿Qué es? ¿Cuál uso? ¿Cómo aperturar MT4?',
-      'Exchanges y Wallets',
-      'TradingView',
-    ],
-  },
-  {
-    title: 'Módulo 4',
-    moduleItems: [
-      'Introducción',
-      'Broker: ¿Qué es? ¿Cuál uso? ¿Cómo aperturar MT4?',
-      'Exchanges y Wallets',
-      'TradingView',
-    ],
-  },
-  {
-    title: 'Módulo 4',
-    moduleItems: [
-      'Introducción',
-      'Broker: ¿Qué es? ¿Cuál uso? ¿Cómo aperturar MT4?',
-      'Exchanges y Wallets',
-      'TradingView',
-    ],
-  },
-  {
-    title: 'Módulo 4',
-    moduleItems: [
-      'Introducción',
-      'Broker: ¿Qué es? ¿Cuál uso? ¿Cómo aperturar MT4?',
-      'Exchanges y Wallets',
-      'TradingView',
-    ],
-  },
-  {
-    title: 'Módulo 4',
-    moduleItems: [
-      'Introducción',
-      'Broker: ¿Qué es? ¿Cuál uso? ¿Cómo aperturar MT4?',
-      'Exchanges y Wallets',
-      'TradingView',
-    ],
-  },
-  {
-    title: 'Módulo 4',
-    moduleItems: [
-      'Introducción',
-      'Broker: ¿Qué es? ¿Cuál uso? ¿Cómo aperturar MT4?',
-      'Exchanges y Wallets',
-      'TradingView',
-    ],
-  },
-  {
-    title: 'Módulo 4',
-    moduleItems: [
-      'Introducción',
-      'Broker: ¿Qué es? ¿Cuál uso? ¿Cómo aperturar MT4?',
-      'Exchanges y Wallets',
-      'TradingView',
-    ],
-  },
-  {
-    title: 'Módulo 4',
-    moduleItems: [
-      'Introducción',
-      'Broker: ¿Qué es? ¿Cuál uso? ¿Cómo aperturar MT4?',
-      'Exchanges y Wallets',
-      'TradingView',
-    ],
-  },
-  {
-    title: 'Módulo 4',
-    moduleItems: [
-      'Introducción',
-      'Broker: ¿Qué es? ¿Cuál uso? ¿Cómo aperturar MT4?',
-      'Exchanges y Wallets',
-      'TradingView',
-    ],
-  },
-];
+type Props = {
+  modulesList: Module[],
+};
 
-const modulesListAccordionContent = modulesList.map((item) => ({
-  title: item.title,
-  content: item.moduleItems.map((moduleItem, index) => (
-    <li key={`mod-item-acc-${index + 1}`} className={moduleAbstractStyles.ModuleAbstract_Topic}>
-      <span className={moduleAbstractStyles.ModuleAbstract_TopicName}>
-        {index + 1}
-        .
-        {' '}
-        { moduleItem }
-      </span>
-    </li>
-  )),
-}));
-
-const CourseView: FC = () => {
+const CourseView: FC<Props> = (props: Props) => {
+  const { modulesList } = props;
   const courseViewClassName = cn('section', styles.CourseView);
+
+  const modulesListAccordionContent = modulesList.map((item) => ({
+    title: item.name,
+    content: item.classes?.map((moduleItem, index) => (
+      <li key={`mod-item-acc-${index + 1}`} className={moduleAbstractStyles.ModuleAbstract_Topic}>
+        <Link href={`/curso/${item.name}/${moduleItem.name}`}>
+          <a className={moduleAbstractStyles.ModuleAbstract_TopicName}>
+            {index + 1}
+            .
+            {' '}
+            { moduleItem.name }
+          </a>
+        </Link>
+      </li>
+    )),
+  }));
+
   return (
     <section className={courseViewClassName}>
       <div className={styles.CourseView_Container}>
@@ -142,7 +41,12 @@ const CourseView: FC = () => {
             {' '}
             DEL PROGRAMA
           </h2>
-          <Accordion className={styles.CourseView_Accordion} content={modulesListAccordionContent} type="with-list" columns={1} />
+          <Accordion
+            className={styles.CourseView_Accordion}
+            content={modulesListAccordionContent}
+            type="with-list"
+            columns={1}
+          />
         </div>
       </div>
     </section>

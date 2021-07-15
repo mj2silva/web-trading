@@ -103,3 +103,24 @@ html {
   align-content: center;
   margin: 0 auto;
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $cl-grayText;
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $cl-black;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $cl-gray;
+}

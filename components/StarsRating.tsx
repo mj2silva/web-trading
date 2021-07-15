@@ -40,6 +40,7 @@ const Star: FC<StarProps> = (props: StarProps) => {
       className={className}
     >
       <FontAwesomeIcon icon={faStar} />
+      { id }
     </button>
   );
 };

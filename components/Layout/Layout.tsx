@@ -23,7 +23,9 @@ const Layout: FC<Props> = ({ children }: Props) => {
       }
     }
   }, [pathname, user, push, isLoading]);
-  return isLoading && pathname !== '/'
+  const isPublic = pathname === '/';
+  const loadingScreen = (isLoading && !isPublic) || (isPublic && user) || (!user && !isPublic);
+  return loadingScreen
     ? <Loading />
     : (
       <>
