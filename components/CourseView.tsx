@@ -19,7 +19,7 @@ const CourseView: FC<Props> = (props: Props) => {
     title: item.name,
     content: item.classes?.map((moduleItem, index) => (
       <li key={`mod-item-acc-${index + 1}`} className={moduleAbstractStyles.ModuleAbstract_Topic}>
-        <Link href={`/curso/${item.name}/${moduleItem.name}`}>
+        <Link href={`/curso/${item.slug}/${moduleItem.slug}`}>
           <a className={moduleAbstractStyles.ModuleAbstract_TopicName}>
             {index + 1}
             .

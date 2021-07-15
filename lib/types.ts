@@ -13,12 +13,14 @@ export type ModuleClass = {
   order: number,
   type?: string,
   videoUrl?: string,
+  slug?: string,
 };
 
 export type Module = {
   id?: string,
   name: string,
   classes?: ModuleClass[],
+  slug?: string,
 };
 
 export type CourseBenefits = {

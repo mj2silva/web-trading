@@ -47,6 +47,7 @@ export const getModuleClasses = async (moduleId: string = ''): Promise<ModuleCla
         videoUrl: classData.videoUrl || null,
         id: classResponse.id,
         type: classData.type || 'VIDEO',
+        slug: classData.slug || '',
       });
     });
     return classes;
@@ -63,6 +64,7 @@ export const getModules = async (): Promise<Module[]> => {
     partialModules.push({
       name: moduleData.name,
       id: moduleResponse.id,
+      slug: moduleData.slug || '',
     });
   });
   const modulesPromises = partialModules.map(
