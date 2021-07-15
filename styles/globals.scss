@@ -55,6 +55,7 @@
   transition-duration: 200ms;
   min-width: 7rem;
   border: 1px solid $cl-yellow;
+  text-decoration: none;
   &:hover {
     background-color: $cl-yellow-hover;
     border-color: $cl-yellow-hover;

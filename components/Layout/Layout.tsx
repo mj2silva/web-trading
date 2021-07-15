@@ -14,17 +14,18 @@ type Props = {
 const Layout: FC<Props> = ({ children }: Props) => {
   const { isLoading, user } = useContext(UserContext);
   const { pathname, push } = useRouter();
+  const isPublic = pathname === '/';
+  const loadingScreen = (isLoading && !isPublic) || (isPublic && user) || (!user && !isPublic);
   useEffect(() => {
     if (!isLoading) {
       if (pathname.startsWith('/curso') && !user) {
         push('/');
-      } else if (pathname === '/' && user) {
+      } else if (isPublic && user) {
         push('/curso');
       }
     }
-  }, [pathname, user, push, isLoading]);
-  const isPublic = pathname === '/';
-  const loadingScreen = (isLoading && !isPublic) || (isPublic && user) || (!user && !isPublic);
+  }, [isLoading, isPublic, pathname, user, push]);
+
   return loadingScreen
     ? <Loading />
     : (

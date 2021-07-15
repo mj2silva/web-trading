@@ -2,6 +2,7 @@ import { FC } from 'react';
 import cn from 'classnames';
 import styles from '@styles/Benefits.module.scss';
 import titleStyles from '@styles/Title.module.scss';
+import Link from 'next/link';
 import { CourseBenefits } from 'lib/types';
 import Accordion from './Accordion/Accordion';
 
@@ -39,9 +40,11 @@ const Benefits: FC<Props> = ({ benefitsList } : Props) => {
         </div>
       </div>
       <div className={styles.Benefits_CallToAction}>
-        <button type="button" className={cn('button', styles.Benefits_Button)}>
-          ¡INGRESA AL CURSO AHORA!
-        </button>
+        <Link href="#preregistro">
+          <a className={cn('button', styles.Benefits_Button)}>
+            ¡INGRESA AL CURSO AHORA!
+          </a>
+        </Link>
       </div>
     </section>
   );

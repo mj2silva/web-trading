@@ -38,12 +38,17 @@ const useUser = (): UseUserReturn => {
   useEffect(() => {
     auth.onAuthStateChanged((newUser) => {
       let cancelSub;
+      setIsLoading(true);
       if (newUser) {
-        cancelSub = getUser(newUser, setUser);
+        const setUserFn = (nuser: User): void => {
+          setUser(nuser);
+          setIsLoading(false);
+        };
+        cancelSub = getUser(newUser, setUserFn);
       } else {
         setUser(null);
+        setIsLoading(false);
       }
-      setIsLoading(false);
       return cancelSub;
     });
   }, []);
