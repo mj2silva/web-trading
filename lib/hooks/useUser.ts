@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
 import { auth } from 'lib/firebase';
-import { User } from 'lib/types';
-import { getUser } from 'lib/repository/usersRepository';
+import { Module, User, UserGroup } from 'lib/types';
+import { getUser, getUserGroup } from 'lib/repository/usersRepository';
+import { getUserModules } from 'lib/repository/modulesRepository';
 
 type UseUserReturn = {
   user: User,
+  userModules?: Module[],
+  userGroup?: UserGroup,
   error?: string,
   isLoading: boolean,
   signIn: (email: string, password: string) => Promise<void>,
@@ -15,6 +18,9 @@ const useUser = (): UseUserReturn => {
   const [user, setUser] = useState<User>(null);
   const [error, setError] = useState<string>();
   const [isLoading, setIsLoading] = useState(true);
+  const [userModules, setUserModules] = useState<Module[]>();
+  const [userGroup, setUserGroup] = useState<UserGroup>();
+
   const signIn = async (email: string, password: string): Promise<void> => {
     setIsLoading(true);
     try {
@@ -36,12 +42,16 @@ const useUser = (): UseUserReturn => {
     }
   };
   useEffect(() => {
-    auth.onAuthStateChanged((newUser) => {
+    auth.onAuthStateChanged(async (newUser) => {
       let cancelSub;
       setIsLoading(true);
       if (newUser) {
-        const setUserFn = (nuser: User): void => {
+        const setUserFn = async (nuser: User): Promise<void> => {
+          const ugroup = await getUserGroup(nuser);
+          const modules = await getUserModules(nuser, ugroup);
           setUser(nuser);
+          setUserModules(modules);
+          setUserGroup(ugroup);
           setIsLoading(false);
         };
         cancelSub = getUser(newUser, setUserFn);
@@ -59,6 +69,8 @@ const useUser = (): UseUserReturn => {
     isLoading,
     user,
     error,
+    userModules,
+    userGroup,
   };
 };
 

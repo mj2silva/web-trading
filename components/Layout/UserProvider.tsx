@@ -1,7 +1,7 @@
 import {
   createContext, FC, ReactNode,
 } from 'react';
-import { User } from 'lib/types';
+import { Module, User, UserGroup } from 'lib/types';
 import useUser from 'lib/hooks/useUser';
 
 type ContextProps = {
@@ -10,6 +10,8 @@ type ContextProps = {
   signOut?: () => Promise<void>,
   error?: string,
   isLoading: boolean,
+  userGroup?: UserGroup,
+  userModules?: Module[],
 }
 
 export const UserContext = createContext<ContextProps>({
@@ -18,6 +20,8 @@ export const UserContext = createContext<ContextProps>({
   signOut: undefined,
   isLoading: false,
   error: undefined,
+  userGroup: undefined,
+  userModules: undefined,
 });
 
 type Props = {
@@ -32,11 +36,13 @@ const UserProvider: FC<Props> = (props: Props) => {
     signOut,
     isLoading,
     error,
+    userGroup,
+    userModules,
   } = useUser();
   return (
     <UserContext.Provider
       value={{
-        user, signIn, signOut, isLoading, error,
+        user, signIn, signOut, isLoading, error, userGroup, userModules,
       }}
     >
       { children }

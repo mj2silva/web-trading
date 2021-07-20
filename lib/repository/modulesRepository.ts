@@ -1,6 +1,6 @@
 import { firestore } from 'lib/firebase';
 import {
-  CourseBenefits, Faq, Module, ModuleClass, PreRegisteredUser,
+  CourseBenefits, Faq, Module, ModuleClass, PreRegisteredUser, User, UserGroup,
 } from 'lib/types';
 
 const modulesCollection = 'courseModules';
@@ -73,6 +73,7 @@ export const getModules = async (): Promise<Module[]> => {
         const classes = await getModuleClasses(partialModule.id);
         const module: Module = {
           name: '',
+          order: 0,
           ...partialModule,
           classes,
         };
@@ -102,6 +103,7 @@ export const getPublicModules = async (): Promise<Module[]> => {
         const classes = await getPublicModuleClasses(partialModule.id);
         const module: Module = {
           name: '',
+          order: 0,
           ...partialModule,
           classes,
         };
@@ -148,4 +150,66 @@ export const preRegisterUser = async (newUserData: PreRegisteredUser): Promise<v
   const preRegisteredUsersCollectionRef = firestore.collection(preRegisteredUsersCollection);
   const preRegisteredUserDoc = preRegisteredUsersCollectionRef.doc();
   await preRegisteredUserDoc.set(newUserData);
+};
+
+/* export const getModuleClassData = async (
+  moduleSlug: string, classSlug: string): Promise<ModuleClass> => {
+  const moduleRef = firestore.collection('modules').where('slug', '==', moduleSlug).limit(1);
+  const response = await moduleRef.get();
+  const moduleDoc: ModuleClass = response.docs[0];
+  if (moduleDoc) {
+    const classRef = firestore.collection('modules').doc(moduleDoc.id).collection('modules');
+  }
+} */
+
+export const getUserModules = async (user: User, userGroup?: UserGroup):
+  Promise<Module[]> => {
+  let group: UserGroup;
+  if (!userGroup) {
+    const userGroupRef = firestore.collection('userGroups').doc(user?.groupId);
+    const userGroupDoc = await userGroupRef.get();
+    group = userGroupDoc.data() as UserGroup;
+  } else {
+    group = userGroup;
+  }
+  const modulesCollectionRef = firestore
+    .collection('courseModules')
+    .orderBy('order');
+  const userModulesResponse = await modulesCollectionRef.get();
+  const partialUserModules: Module[] = [];
+  userModulesResponse.forEach((moduleResponse) => {
+    partialUserModules.push({
+      id: moduleResponse.id,
+      ...moduleResponse.data() as Module,
+    });
+  });
+
+  const modulesPromises: Promise<Module>[] = partialUserModules.map(
+    (partialModule) => {
+      const getModule = async (): Promise<Module> => {
+        const classes = await getModuleClasses(partialModule.id);
+        if (partialModule.order <= (group?.higherModuleOrder || 100)) {
+          const module: Module = {
+            ...partialModule,
+            classes,
+          };
+          return module;
+        }
+        return {
+          ...partialModule,
+          classes: classes.map((moduleClass) => {
+            const newClass = moduleClass;
+            delete newClass.videoUrl;
+            delete newClass.slug;
+            delete newClass.type;
+            return moduleClass;
+          }),
+        };
+      };
+      return getModule();
+    },
+  )
+    .filter((promise) => typeof promise !== 'undefined') as Promise<Module>[];
+  const modules = await Promise.all(modulesPromises);
+  return modules;
 };
