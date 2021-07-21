@@ -52,3 +52,12 @@ export type PreRegisteredUser = {
   email: string,
   country: string,
 }
+
+export type Comment = {
+  id?: string,
+  userId: string,
+  comment: string,
+  rate: number,
+  moduleId?: string,
+  moduleClassId?: string,
+};

@@ -21,7 +21,7 @@ const Layout: FC<Props> = ({ children }: Props) => {
       if (pathname.startsWith('/curso') && !user) {
         push('/');
       } else if (isPublic && user) {
-        push('/curso');
+        push('/curso/modulo-1/introduccion');
       }
     }
   }, [isLoading, isPublic, pathname, user, push]);

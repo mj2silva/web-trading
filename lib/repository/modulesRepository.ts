@@ -1,5 +1,6 @@
-import { firestore } from 'lib/firebase';
+import { firestore, getServerTimestamp } from 'lib/firebase';
 import {
+  Comment,
   CourseBenefits, Faq, Module, ModuleClass, PreRegisteredUser, User, UserGroup,
 } from 'lib/types';
 
@@ -212,4 +213,15 @@ export const getUserModules = async (user: User, userGroup?: UserGroup):
     .filter((promise) => typeof promise !== 'undefined') as Promise<Module>[];
   const modules = await Promise.all(modulesPromises);
   return modules;
+};
+
+export const createComment = async (user: User, comment: Comment): Promise<void> => {
+  const commentsCollectionRef = firestore.collection('comments');
+  const commentDocRef = commentsCollectionRef.doc();
+  const commentToSave = {
+    ...comment,
+    userId: user?.uid,
+    date: getServerTimestamp(),
+  };
+  await commentDocRef.set(commentToSave);
 };
