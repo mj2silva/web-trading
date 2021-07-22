@@ -34,7 +34,7 @@ export const getUserGroup = async (user: User): Promise<UserGroup> => {
 export const checkUsername = async (username: string): Promise<boolean> => {
   const usernameRef = firestore.collection('usernames').doc(username);
   const { exists } = await usernameRef.get();
-  return exists;
+  return !exists;
 };
 
 export const checkUserHasAccess = async (user: User): Promise<boolean> => {
@@ -47,4 +47,21 @@ export const checkUserHasAccess = async (user: User): Promise<boolean> => {
     return hasAccess;
   }
   return false;
+};
+
+export const changeUsername = async (user: User, username: string): Promise<void> => {
+  const batch = firestore.batch();
+  const usernamesCollectionRef = firestore.collection('usernames');
+  const userDocRef = firestore.collection('users').doc(user?.uid);
+
+  if (user?.username) {
+    const oldUsernameRef = usernamesCollectionRef.doc(user?.username);
+    batch.delete(oldUsernameRef);
+  }
+  const newUsernameRef = usernamesCollectionRef.doc(username);
+  batch.set(newUsernameRef, {
+    uid: user?.uid,
+  });
+  batch.set(userDocRef, { username }, { merge: true });
+  await batch.commit();
 };

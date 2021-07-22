@@ -1,4 +1,5 @@
 import { FC, useContext } from 'react';
+import Link from 'next/link';
 import cn from 'classnames';
 import styles from '@styles/ProfileMenu.module.scss';
 import dropdownStyles from '@styles/Dropdown.module.scss';
@@ -50,8 +51,12 @@ const ProfileMenu: FC<Props> = (props: Props) => {
         <h3 className={styles.ProfileMenu_LastNames}>
           {user.lastNames}
         </h3>
-        <button type="button" className={buttonClassName}>EDITAR PERFIL</button>
-        <button type="button" className={buttonClassName}>CAMBIAR CONTRASEÑA</button>
+        <Link href="/curso/configuracion/perfil">
+          <a className={buttonClassName}>EDITAR PERFIL</a>
+        </Link>
+        <Link href="/curso/configuracion/seguridad">
+          <a className={buttonClassName}>CAMBIAR CONTRASEÑA</a>
+        </Link>
         <button type="button" onClick={signOut} className={linkClassName}>Cerrar sesión</button>
       </div>
     </div>
