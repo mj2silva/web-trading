@@ -1,6 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
+import 'firebase/storage';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBe7JNYwI5aYpyCEj4eVfGRxpfydcp16mI',
@@ -18,5 +19,8 @@ if (firebase.apps.length === 0) {
 }
 
 export const auth = firebase.auth();
+export const getCredentialWithEmailAndPassword = firebase.auth.EmailAuthProvider;
 export const firestore = firebase.firestore();
+export const storage = firebase.storage();
 export const getServerTimestamp = firebase.firestore.FieldValue.serverTimestamp;
+export const { STATE_CHANGED } = firebase.storage.TaskEvent;

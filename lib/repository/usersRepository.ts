@@ -1,7 +1,29 @@
-import { firestore } from 'lib/firebase';
+import firebase from 'firebase/app';
 import { User, UserGroup } from 'lib/types';
+import {
+  auth, firestore, getCredentialWithEmailAndPassword, storage,
+} from '../firebase';
 
 const usersCollection = 'users';
+
+export const uploadImage = (
+  file: File, filePath: string, fileName: string = '',
+) : [firebase.storage.Reference, firebase.storage.UploadTask] => {
+  const extension = file.type.split('/')[1];
+  const ref = storage.ref(`${filePath}/${fileName || Date.now()}.${extension}`);
+  const task = ref.put(file);
+  return [ref, task];
+};
+
+export const updateUserProfilePicture = async (
+  imageRef: string, imageUrl: string, user: User,
+) : Promise<void> => {
+  const ref = firestore.collection('users').doc(user?.uid);
+  if (user?.imageRef && typeof user.imageRef === 'string') {
+    await storage.ref(user.imageRef).delete();
+  }
+  await ref.set({ photoUrl: imageUrl, imageRef }, { merge: true });
+};
 
 export const getUser = (user: User, setUserFn: (user: User) => Promise<void>): () => void => {
   const usersCollectionRef = firestore.collection(usersCollection).doc(user?.uid);
@@ -10,7 +32,8 @@ export const getUser = (user: User, setUserFn: (user: User) => Promise<void>): (
     if (user) {
       await setUserFn({
         ...user,
-        vimeoToken: userData?.vimeoToken,
+        photoURL: userData?.photoUrl,
+        imageRef: userData?.imageRef,
         username: userData?.username,
         names: userData?.names,
         lastNames: userData?.lastNames,
@@ -76,4 +99,14 @@ export const changeLastNames = async (user: User, lastNames: string): Promise<vo
   const usersCollectionRef = firestore.collection('users');
   const userDocRef = usersCollectionRef.doc(user?.uid);
   await userDocRef.set({ lastNames }, { merge: true });
+};
+
+export const changePassword = async (
+  user: User, oldPassword: string, password: string,
+): Promise<void> => {
+  if (user?.email) {
+    const newCredential = getCredentialWithEmailAndPassword.credential(user.email, oldPassword);
+    await auth.currentUser?.reauthenticateWithCredential(newCredential);
+    await auth.currentUser?.updatePassword(password);
+  }
 };

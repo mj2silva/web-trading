@@ -21,7 +21,6 @@ const ChangeUsername: FC = () => {
       try {
         await changeUsername(user, username);
       } catch (err) {
-        console.log(err);
         setError(err.message);
       }
     }

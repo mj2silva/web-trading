@@ -3,6 +3,7 @@ import Head from 'next/head';
 import ChangeUsername from 'components/UserConfiguration/ChangeUsername';
 import ChangeNames from 'components/UserConfiguration/ChangeNames';
 import ChangeLastNames from 'components/UserConfiguration/ChangeLastNames';
+import ChangeProfilePicture from 'components/UserConfiguration/ChangeProfilePicture';
 
 const Perfil: FC = () => (
   <main>
@@ -13,6 +14,7 @@ const Perfil: FC = () => (
     <ChangeUsername />
     <ChangeNames />
     <ChangeLastNames />
+    <ChangeProfilePicture />
   </main>
 );
 

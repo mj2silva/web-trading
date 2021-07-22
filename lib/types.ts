@@ -1,12 +1,13 @@
 import firebase from 'firebase';
 
 export type User = ({
-  vimeoToken?: string,
   username?: string,
   names?: string,
   lastNames?: string,
   groupName?: string,
   groupId?: string,
+  photoUrl?: string,
+  imageRef?: string,
 } & firebase.User) | null;
 
 export type UserGroup = ({
