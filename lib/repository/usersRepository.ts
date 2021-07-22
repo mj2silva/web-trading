@@ -65,3 +65,15 @@ export const changeUsername = async (user: User, username: string): Promise<void
   batch.set(userDocRef, { username }, { merge: true });
   await batch.commit();
 };
+
+export const changeNames = async (user: User, names: string): Promise<void> => {
+  const usersCollectionRef = firestore.collection('users');
+  const userDocRef = usersCollectionRef.doc(user?.uid);
+  await userDocRef.set({ names }, { merge: true });
+};
+
+export const changeLastNames = async (user: User, lastNames: string): Promise<void> => {
+  const usersCollectionRef = firestore.collection('users');
+  const userDocRef = usersCollectionRef.doc(user?.uid);
+  await userDocRef.set({ lastNames }, { merge: true });
+};
