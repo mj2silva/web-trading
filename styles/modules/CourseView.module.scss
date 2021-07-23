@@ -1,7 +1,8 @@
 @import '../common/common.scss';
 
 .CourseView {
-  min-height: calc(100vh - #{$headerHeight});
+  height: calc(100vh - #{$headerHeight});
+  min-height: 30rem;
   box-sizing: border-box;
   &_Container {
     border-radius: 15px;
@@ -49,6 +50,8 @@
     font-family: $avenirDemi;
   }
   @media screen and (max-width: $breakpoint-tablet) {
+    min-height:45rem;
+    height: fit-content;
     &_Container {
       flex-direction: column;
       align-items: center;

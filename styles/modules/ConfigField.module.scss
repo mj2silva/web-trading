@@ -57,4 +57,31 @@
     color: $cl-red;
     font-size: .8rem;
   }
+  @media screen and (max-width: $breakpoint-tablet) {
+    flex-direction: column;
+    width: 100%;
+    gap: .5rem;
+    align-items: flex-start;
+    &_Wrapper {
+      flex-direction: column;
+      width: 100%;
+      gap: .5rem;
+    }
+    &_MultiWrapper {
+      flex-direction: column;
+      width: 100%;
+      gap: .5rem;
+    }
+    &_Label {
+      width: 100%;
+    }
+    &_TextInput {
+      min-width: 0;
+      margin: 0;
+    }
+    &_FileInput {
+      min-width: 0;
+      margin: 0;
+    }
+  }
 }

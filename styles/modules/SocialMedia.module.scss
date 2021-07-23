@@ -23,6 +23,7 @@
   }
   @media screen and (max-width: $breakpoint-tablet) {
     padding: 4rem 0;
+    height: fit-content;
     &_Title {
       align-self: flex-start;
       padding: 0 2rem;

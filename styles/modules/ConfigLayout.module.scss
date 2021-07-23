@@ -34,4 +34,22 @@
     border-radius: 8px;
     min-height: 25rem;
   }
+  @media screen and (max-width: $breakpoint-tablet) {
+    flex-direction: column;
+    &_Nav {
+      flex-direction: row;
+      width: 80%;
+      align-items: center;
+      justify-content: center;
+    }
+    &_Link {
+      min-width: 40%;
+      text-align: center;
+    }
+    &_Body {
+      width: 100%;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+  }
 }

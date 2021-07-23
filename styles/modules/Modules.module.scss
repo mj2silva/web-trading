@@ -22,6 +22,8 @@
     box-sizing: border-box;
   }
   @media screen and (max-width: $breakpoint-tablet) {
+    min-height: 50rem;
+    padding: 1rem 0;
     &_Accordion {
       height: 48rem;
     }

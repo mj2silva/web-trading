@@ -63,6 +63,9 @@
     position: relative;
     width: 100%;
     overflow: hidden;
+    &_Button {
+      max-width: 85%;
+    }
     &_Selector {
       display: none;
     }
