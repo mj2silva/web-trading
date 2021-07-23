@@ -25,8 +25,10 @@ const useUser = (): UseUserReturn => {
     setIsLoading(true);
     try {
       await auth.signInWithEmailAndPassword(email, password);
+      setError('');
     } catch (err) {
-      setError(err.message);
+      if (err.code === 'auth/wrong-password' || err.code === 'auth/user-not-found') setError('El usuario y/o contraseña son incorrectos');
+      else setError('Sucedió un error, intente nuevamente más adelante o comuníquese con nosotros para ayudarlo');
     } finally {
       setIsLoading(false);
     }
@@ -41,15 +43,16 @@ const useUser = (): UseUserReturn => {
       setIsLoading(false);
     }
   };
+
   useEffect(() => {
     auth.onAuthStateChanged(async (newUser) => {
       let cancelSub;
       setIsLoading(true);
       if (newUser) {
         const setUserFn = async (nuser: User): Promise<void> => {
+          setUser(nuser);
           const ugroup = await getUserGroup(nuser);
           const modules = await getUserModules(nuser, ugroup);
-          setUser(nuser);
           setUserModules(modules);
           setUserGroup(ugroup);
           setIsLoading(false);
