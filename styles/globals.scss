@@ -61,6 +61,12 @@
     background-color: $cl-yellow-hover;
     border-color: $cl-yellow-hover;
   }
+  &:disabled {
+    cursor: not-allowed;
+    background-color: $cl-yellow-disabled;
+    border-color: $cl-yellow-disabled;
+    color: $cl-darkGray;
+  }
 }
 
 body {

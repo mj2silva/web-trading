@@ -4,9 +4,10 @@ import ChangeUsername from 'components/UserConfiguration/ChangeUsername';
 import ChangeNames from 'components/UserConfiguration/ChangeNames';
 import ChangeLastNames from 'components/UserConfiguration/ChangeLastNames';
 import ChangeProfilePicture from 'components/UserConfiguration/ChangeProfilePicture';
+import ConfigLayout from 'components/UserConfiguration/ConfigLayout';
 
 const Perfil: FC = () => (
-  <main>
+  <ConfigLayout>
     <Head>
       <title>Trading para TI | Configuración</title>
     </Head>
@@ -15,7 +16,7 @@ const Perfil: FC = () => (
     <ChangeNames />
     <ChangeLastNames />
     <ChangeProfilePicture />
-  </main>
+  </ConfigLayout>
 );
 
 export default Perfil;

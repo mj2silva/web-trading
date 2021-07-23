@@ -3,6 +3,8 @@ import {
 } from 'react';
 
 import { toast } from 'react-toastify';
+import styles from '@styles/ConfigField.module.scss';
+import cn from 'classnames';
 import Spinner from '../Spinner';
 
 import { STATE_CHANGED } from '../../lib/firebase';
@@ -62,12 +64,22 @@ const ChangeProfilePicture : FC = () => {
     }
   };
   return (
-    <form onSubmit={handleSubmit} className="configuration__form">
-      <label htmlFor="profilePicture" className="configuration__input configuration__input--file">
-        <div className="configuration__form-label">Cambiar foto de perfil</div>
-        <input name="profilePicture" type="file" onChange={handleChange} />
+    <form className={styles.ConfigField} onSubmit={handleSubmit}>
+      <label className={styles.ConfigField_Wrapper} htmlFor="profilePicture">
+        <span className={styles.ConfigField_Label}>Cambiar foto de perfil</span>
+        <input
+          className={styles.ConfigField_FileInput}
+          name="profilePicture"
+          type="file"
+          accept=".jpg | .png"
+          onChange={handleChange}
+        />
       </label>
-      <button disabled={uploading} className="configuration__form-button" type="submit">
+      <button
+        disabled={uploading}
+        className={cn('button', styles.ConfigField_Button)}
+        type="submit"
+      >
         { uploading ? <Spinner /> : 'Guardar' }
       </button>
       {uploading && (
@@ -78,7 +90,7 @@ const ChangeProfilePicture : FC = () => {
       </div>
       ) }
       { error && (
-        <div>
+        <div className={styles.ConfigField_Error}>
           Error:
           {' '}
           {error}

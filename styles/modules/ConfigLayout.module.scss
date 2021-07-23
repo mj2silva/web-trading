@@ -1,0 +1,37 @@
+@import '../common/common.scss';
+
+.ConfigLayout {
+  display: flex;
+  width: 90%;
+  justify-content: center;
+  margin: 2rem auto;
+  &_Nav {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    width: 20%;
+    gap: .5rem;
+  }
+  &_Link {
+    text-decoration: none;
+    padding: .5rem;
+    font-weight: bold;
+    color: $cl-black;
+    border-radius: 8px;
+    &:hover {
+      background-color: $cl-yellow;
+    }
+    &_active {
+      background-color: $cl-yellow;
+    }
+  }
+  &_Body {
+    width: 70%;
+    border: 1px solid $cl-darkGray;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    min-height: 25rem;
+  }
+}

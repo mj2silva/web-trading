@@ -5,6 +5,8 @@ import debounce from 'lodash.debounce';
 import { changeUsername, checkUsername } from 'lib/repository/usersRepository';
 import Spinner from 'components/Spinner';
 import { UserContext } from 'components/Layout/UserProvider';
+import styles from '@styles/ConfigField.module.scss';
+import cn from 'classnames';
 
 const ChangeUsername: FC = () => {
   const { user } = useContext(UserContext);
@@ -36,16 +38,19 @@ const ChangeUsername: FC = () => {
       if (username) {
         const validUsername = await checkUsername(username);
         setChangeAllowed(validUsername);
+        if (!validUsername && username !== user?.username) setError('El nombre de usuario ya existe');
+        else setError('');
       }
     });
     checkUsernameDeb();
-  }, [username]);
+  }, [username, user?.username]);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="username">
-        Nuevo nombre de usuario:
+    <form className={styles.ConfigField} onSubmit={handleSubmit}>
+      <label className={styles.ConfigField_Wrapper} htmlFor="username">
+        <span className={styles.ConfigField_Label}>Nuevo nombre de usuario:</span>
         <input
+          className={styles.ConfigField_TextInput}
           type="text"
           name="username"
           onChange={handleChange}
@@ -55,10 +60,17 @@ const ChangeUsername: FC = () => {
       <button
         type="submit"
         disabled={!changeAllowed}
+        className={cn('button', styles.ConfigField_Button)}
       >
         { isSubmitting ? <Spinner /> : 'Cambiar' }
       </button>
-      { error && <span>Hubo un error, intenta nuevamente más tarde</span>}
+      { error && (
+      <span
+        className={styles.ConfigField_Error}
+      >
+        { error }
+      </span>
+      )}
     </form>
   );
 };

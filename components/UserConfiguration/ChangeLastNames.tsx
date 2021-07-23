@@ -5,6 +5,8 @@ import debounce from 'lodash.debounce';
 import { changeLastNames } from 'lib/repository/usersRepository';
 import Spinner from 'components/Spinner';
 import { UserContext } from 'components/Layout/UserProvider';
+import styles from '@styles/ConfigField.module.scss';
+import cn from 'classnames';
 
 const ChangeLastNames: FC = () => {
   const { user } = useContext(UserContext);
@@ -43,10 +45,11 @@ const ChangeLastNames: FC = () => {
   }, [lastNames]);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="lastLastNames">
-        Tus apellidos:
+    <form className={styles.ConfigField} onSubmit={handleSubmit}>
+      <label className={styles.ConfigField_Wrapper} htmlFor="lastLastNames">
+        <span className={styles.ConfigField_Label}>Tus apellidos:</span>
         <input
+          className={styles.ConfigField_TextInput}
           type="text"
           name="lastLastNames"
           onChange={handleChange}
@@ -56,6 +59,7 @@ const ChangeLastNames: FC = () => {
       <button
         type="submit"
         disabled={!changeAllowed}
+        className={cn('button', styles.ConfigField_Button)}
       >
         { isSubmitting ? <Spinner /> : 'Cambiar' }
       </button>

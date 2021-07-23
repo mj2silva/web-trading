@@ -2,7 +2,7 @@ import { FC } from 'react';
 import cn from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faFacebookF, faInstagram, faTelegramPlane, faTiktok, faYoutube,
+  faFacebookF, faInstagram, faTelegramPlane, faTiktok, faTwitter, faYoutube,
 } from '@fortawesome/free-brands-svg-icons';
 import styles from '@styles/Footer.module.scss';
 import Logo from './Logo';
@@ -30,8 +30,8 @@ const Footer: FC = () => (
           ¡Cambia tu forma de ver los gráficos!
         </h3>
         <div className={styles.Footer_SocialLogos}>
-          <a href="#" target="_blank" className={styles.Footer_SocialLogo}>
-            <FontAwesomeIcon icon={faFacebookF} />
+          <a href="https://twitter.com/TradingParaTi" target="_blank" rel="noreferrer" className={styles.Footer_SocialLogo}>
+            <FontAwesomeIcon icon={faTwitter} />
           </a>
           <a href="https://vm.tiktok.com/ZMduAAhbY/" target="_blank" rel="noreferrer" className={styles.Footer_SocialLogo}>
             <FontAwesomeIcon icon={faTiktok} />
@@ -39,7 +39,7 @@ const Footer: FC = () => (
           <a href="https://t.me/joinchat/mOg3RL3bdqMyMGU5" target="_blank" rel="noreferrer" className={styles.Footer_SocialLogo}>
             <FontAwesomeIcon icon={faTelegramPlane} />
           </a>
-          <a href="#" target="_blank" className={styles.Footer_SocialLogo}>
+          <a href="https://instagram.com/tradingparatioficial" target="_blank" rel="noreferrer" className={styles.Footer_SocialLogo}>
             <FontAwesomeIcon icon={faInstagram} />
           </a>
           <a href="#" target="_blank" className={styles.Footer_SocialLogo}>
