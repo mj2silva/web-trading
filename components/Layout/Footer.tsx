@@ -2,7 +2,7 @@ import { FC } from 'react';
 import cn from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faFacebookF, faInstagram, faTelegramPlane, faTiktok, faTwitter, faYoutube,
+  faInstagram, faTelegramPlane, faTiktok, faTwitter, faYoutube,
 } from '@fortawesome/free-brands-svg-icons';
 import styles from '@styles/Footer.module.scss';
 import Logo from './Logo';
