@@ -118,7 +118,7 @@ export const getPublicModules = async (): Promise<Module[]> => {
 };
 
 export const getCourseBenefits = async (): Promise<CourseBenefits[]> => {
-  const benefitsCollectionRef = firestore.collection(benefitsCollection);
+  const benefitsCollectionRef = firestore.collection(benefitsCollection).orderBy('order');
   const benefitsCollectionResponse = await benefitsCollectionRef.get();
   const benefits: CourseBenefits[] = [];
   benefitsCollectionResponse.forEach((benefitDocument) => {

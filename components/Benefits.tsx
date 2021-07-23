@@ -2,9 +2,9 @@ import { FC } from 'react';
 import cn from 'classnames';
 import styles from '@styles/Benefits.module.scss';
 import titleStyles from '@styles/Title.module.scss';
-import Link from 'next/link';
 import { CourseBenefits } from 'lib/types';
 import Accordion from './Accordion/Accordion';
+import OpenLoginButton from './Layout/OpenLoginButton';
 
 type Props = {
   benefitsList: CourseBenefits[];
@@ -40,11 +40,9 @@ const Benefits: FC<Props> = ({ benefitsList } : Props) => {
         </div>
       </div>
       <div className={styles.Benefits_CallToAction}>
-        <Link href="#preregistro">
-          <a className={cn('button', styles.Benefits_Button)}>
-            ¡INGRESA AL CURSO AHORA!
-          </a>
-        </Link>
+        <OpenLoginButton className={styles.Benefits_Button}>
+          ¡INGRESA AL CURSO AHORA!
+        </OpenLoginButton>
       </div>
     </section>
   );
