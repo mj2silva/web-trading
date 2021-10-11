@@ -89,7 +89,13 @@ html {
   align-items: center;
   justify-content: center;
   position: relative;
+  @media screen and (max-width: $breakpoint-laptop) {
+    min-height: 40rem;
+    padding: 1rem 0;
+    height: auto;
+  }
 }
+
 
 .ReactModal__Body--open {
   overflow-y: hidden;

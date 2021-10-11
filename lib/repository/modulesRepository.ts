@@ -220,6 +220,7 @@ export const createComment = async (user: User, comment: Comment): Promise<void>
   const commentDocRef = commentsCollectionRef.doc();
   const commentToSave = {
     ...comment,
+    public: false,
     userId: user?.uid,
     date: getServerTimestamp(),
   };

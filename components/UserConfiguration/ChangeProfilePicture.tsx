@@ -71,7 +71,7 @@ const ChangeProfilePicture : FC = () => {
           className={styles.ConfigField_FileInput}
           name="profilePicture"
           type="file"
-          accept=".jpg | .png"
+          accept="image/png, image/jpeg"
           onChange={handleChange}
         />
       </label>

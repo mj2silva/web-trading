@@ -53,6 +53,7 @@
   @media screen and (max-width: $breakpoint-tablet) {
     min-height: 40rem;
     padding: 1rem 0;
+    height: auto;
     &_Title {
       padding: 0 2rem;
       box-sizing: border-box;
