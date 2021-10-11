@@ -26,7 +26,7 @@ const useUser = (): UseUserReturn => {
     try {
       await auth.signInWithEmailAndPassword(email, password);
       setError('');
-    } catch (err) {
+    } catch (err: any) {
       if (err.code === 'auth/wrong-password' || err.code === 'auth/user-not-found') setError('El usuario y/o contraseña son incorrectos');
       else setError('Sucedió un error, intente nuevamente más adelante o comuníquese con nosotros para ayudarlo');
     } finally {
@@ -37,7 +37,7 @@ const useUser = (): UseUserReturn => {
     setIsLoading(true);
     try {
       await auth.signOut();
-    } catch (err) {
+    } catch (err: any) {
       setError(err.message);
     } finally {
       setIsLoading(false);

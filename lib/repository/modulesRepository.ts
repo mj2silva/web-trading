@@ -223,6 +223,26 @@ export const createComment = async (user: User, comment: Comment): Promise<void>
     public: false,
     userId: user?.uid,
     date: getServerTimestamp(),
+    userPicture: user?.photoURL || user?.photoUrl || '/img/usuario.png',
+    username: `${user?.names} ${user?.lastNames}` || user?.displayName || user?.username || '',
   };
   await commentDocRef.set(commentToSave);
+};
+
+export const getPublishedComments = async (): Promise<Comment[]> => {
+  const commentsCollectionQuery = firestore.collection('comments').where('public', '==', true);
+  const commentsDocs = await commentsCollectionQuery.get();
+  const comments: Comment[] = [];
+  commentsDocs.forEach((commentDoc) => {
+    const comment = commentDoc.data() as Comment;
+    comments.push({
+      comment: comment.comment,
+      rate: comment.rate,
+      userId: comment.userId,
+      public: comment.public,
+      userPicture: comment.userPicture,
+      username: comment.username,
+    });
+  });
+  return comments;
 };

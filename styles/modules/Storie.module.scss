@@ -6,9 +6,12 @@
   align-items: center;
   &_AuthorPhoto {
     position: relative;
-    width: 10rem;
+    width: 12rem;
     height: 10rem;
     margin: 1rem 1rem;
+    border-radius: 50%;
+    overflow: hidden;
+    box-sizing: content-box;
   }
   &_AuthorData {
     display: flex;

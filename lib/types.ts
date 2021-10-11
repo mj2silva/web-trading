@@ -61,4 +61,7 @@ export type Comment = {
   rate: number,
   moduleId?: string,
   moduleClassId?: string,
+  public?: boolean,
+  userPicture?: string,
+  username?: string,
 };

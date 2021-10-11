@@ -1,41 +1,32 @@
-import { FC, useRef } from 'react';
+import {
+  FC, useEffect, useRef, useState,
+} from 'react';
 import cn from 'classnames';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from '@styles/CustomerStories.module.scss';
+import { getPublishedComments } from 'lib/repository/modulesRepository';
+import { Comment } from 'lib/types';
+import Spinner from 'components/Spinner';
 import Storie from './Storie';
 import useSlider from './useSlider';
 import CustomerStoriesControl from './CustomerStoriesControl';
 
 const CustomerStories: FC = () => {
-  const stories = [
-    {
-      name: 'Juanita Pérez 1',
-      message: 'El mejor curso de Trading, aprendí muchísimo',
-      pictureUrl: '/img/usuario.png',
-    },
-    {
-      name: 'Juanita Pérez 2',
-      message: 'El mejor curso de Trading, aprendí muchísimo',
-      pictureUrl: '/img/usuario.png',
-    },
-    {
-      name: 'Juanita Pérez 3',
-      message: 'El mejor curso de Trading, aprendí muchísimo',
-      pictureUrl: '/img/usuario.png',
-    },
-    {
-      name: 'Juanita Pérez 4',
-      message: 'El mejor curso de Trading, aprendí muchísimo',
-      pictureUrl: '/img/usuario.png',
-    },
-  ];
+  const [stories, setStories] = useState<Comment[]>();
   const storieClassName = cn(styles.CustomerStories_Storie);
   const customerStoriesRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    const getComments = async () : Promise<void> => {
+      const comments = await getPublishedComments();
+      setStories(comments);
+    };
+    getComments();
+  }, []);
   const {
     currentStep, goToNextPage, goToPreviousPage, goToPage,
-  } = useSlider({ auto: true, totalPages: stories.length, ref: customerStoriesRef });
+  } = useSlider({ auto: true, totalPages: stories?.length || 0, ref: customerStoriesRef });
 
   return (
     <section ref={customerStoriesRef} className={cn('section', styles.CustomerStories)}>
@@ -53,18 +44,22 @@ const CustomerStories: FC = () => {
         </h3>
       </div>
       <div className={styles.CustomerStories_Stories}>
-        {
-          stories.map((storie, index) => (
-            <Storie
-              id={index}
-              totalSteps={stories.length}
-              mainStorieId={currentStep}
-              key={`stor-${index + 1}`}
-              storie={storie}
-              className={storieClassName}
-            />
-          ))
-        }
+        { (stories && stories?.length > 0)
+          ? (
+            stories.map((storie, index) => (
+              <Storie
+                id={index}
+                totalSteps={stories.length}
+                mainStorieId={currentStep}
+                key={`stor-${index + 1}`}
+                storie={{ message: storie.comment, name: storie?.username || '', pictureUrl: storie?.userPicture || '' }}
+                className={storieClassName}
+              />
+            ))
+          )
+          : (
+            <Spinner />
+          ) }
       </div>
       <div className={styles.CustomerStories_Controls_mobile}>
         <button onClick={goToPreviousPage} type="button" className={styles.CustomerStories_Control_next}>
@@ -76,7 +71,7 @@ const CustomerStories: FC = () => {
       </div>
       <div className={styles.CustomerStories_Controls}>
         {
-          stories.map((_, index) => (
+          stories && stories.map((_, index) => (
             <CustomerStoriesControl
               key={`ch-control-${index + 1}`}
               className={styles.CustomerStories_Control}
