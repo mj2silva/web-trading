@@ -18,10 +18,10 @@ const Footer: FC = () => (
           <p>
             Telegram:
             {' '}
-            <a className="link" href="#">@RenzoWenzel</a>
+            <a className="link" href="https://t.me/joinchat/mOg3RL3bdqMyMGU5" target="_blank" rel="noreferrer">@RenzoWenzel</a>
           </p>
           <p>
-            <a className="link" href="#">tradingparatioficial@gmail.com</a>
+            <a className="link" href="mailto:tradingparatioficial@gmail.com" target="_blank" rel="noreferrer">tradingparatioficial@gmail.com</a>
           </p>
         </div>
       </div>
@@ -30,7 +30,7 @@ const Footer: FC = () => (
           ¡Cambia tu forma de ver los gráficos!
         </h3>
         <div className={styles.Footer_SocialLogos}>
-          <a href="https://twitter.com/TradingParaTi" target="_blank" rel="noreferrer" className={styles.Footer_SocialLogo}>
+          <a href="https://twitter.com/ProtocoloCrypto?t=jr1f_cWoBqO_eDmxkrvPqg&s=09" target="_blank" rel="noreferrer" className={styles.Footer_SocialLogo}>
             <FontAwesomeIcon icon={faTwitter} />
           </a>
           <a href="https://vm.tiktok.com/ZMduAAhbY/" target="_blank" rel="noreferrer" className={styles.Footer_SocialLogo}>
@@ -42,7 +42,7 @@ const Footer: FC = () => (
           <a href="https://instagram.com/tradingparatioficial" target="_blank" rel="noreferrer" className={styles.Footer_SocialLogo}>
             <FontAwesomeIcon icon={faInstagram} />
           </a>
-          <a href="#" target="_blank" className={styles.Footer_SocialLogo}>
+          <a href="https://www.youtube.com/channel/UCcTO207hVZVonPJxXbMSIIw" target="_blank" rel="noreferrer" className={styles.Footer_SocialLogo}>
             <FontAwesomeIcon icon={faYoutube} />
           </a>
         </div>

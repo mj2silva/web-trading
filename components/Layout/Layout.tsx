@@ -12,7 +12,7 @@ type Props = {
 }
 
 const Layout: FC<Props> = ({ children }: Props) => {
-  const { isLoading, user } = useContext(UserContext);
+  const { isLoading, user, error } = useContext(UserContext);
   const { pathname, push } = useRouter();
   const isPublic = pathname === '/';
   const loadingScreen = (isLoading && !isPublic) || (isPublic && user) || (!user && !isPublic);
@@ -25,6 +25,10 @@ const Layout: FC<Props> = ({ children }: Props) => {
       }
     }
   }, [isLoading, isPublic, pathname, user, push]);
+
+  if (error) {
+    return <main>{ error }</main>;
+  }
 
   return loadingScreen
     ? <Loading />

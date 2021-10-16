@@ -51,10 +51,14 @@ const useUser = (): UseUserReturn => {
       if (newUser) {
         const setUserFn = async (nuser: User): Promise<void> => {
           setUser(nuser);
-          const ugroup = await getUserGroup(nuser);
-          const modules = await getUserModules(nuser, ugroup);
-          setUserModules(modules);
-          setUserGroup(ugroup);
+          try {
+            const ugroup = await getUserGroup(nuser);
+            const modules = await getUserModules(nuser, ugroup);
+            setUserModules(modules);
+            setUserGroup(ugroup);
+          } catch (err: any) {
+            setError(err.message || err);
+          }
           setIsLoading(false);
         };
         cancelSub = getUser(newUser, setUserFn);

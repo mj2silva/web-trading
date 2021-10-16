@@ -1,4 +1,4 @@
-import AuthorPresentation from 'components/AuthorPresentation';
+import AuthorPresentation from 'components/AuthorPresentation/AuthorPresentation';
 import Benefits from 'components/Benefits';
 import Contact from 'components/Contact';
 import CustomerStories from 'components/CustomerStories/CustomerStories';

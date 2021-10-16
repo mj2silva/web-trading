@@ -9,27 +9,95 @@
   min-height: 25rem;
   height: 25rem;
   justify-content: space-evenly;
+  @media screen and (max-width: $breakpoint-tablet) {
+    height: 30rem;
+  }
   &_Image {
     position: relative;
     min-width: 9rem;
     min-height: 9rem;
+    border-radius: 50%;
+    overflow: hidden;
+    & img {
+      object-fit: cover;
+    }
+  }
+  &_Carousel {
+    position: relative;
+    width: 40%;
+    height: 100%;
+    @media screen and (max-width: $breakpoint-tablet) {
+      width: 90%;
+      height: 20rem;
+      margin: 1rem auto;
+    }
   }
   &_Author {
+    position: absolute;
     display: flex;
+    opacity: 0;
+    top: 0;
+    bottom: 0;
+    margin: 0 auto;
     width: 40%;
     justify-content: space-between;
     align-items: center;
     min-width: 35rem;
+    @media screen and (max-width: $breakpoint-laptop) {
+      width: 100%;
+      min-width: auto;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      justify-content: center;
+      right: auto;
+    }
+    &_active {
+      opacity: 1;
+
+    }
+  }
+  &_Controls {
+    position: absolute;
+    display: flex;
+    bottom: 2rem;
+    left: 0;
+    right: 0;
+    justify-content: center;
+    margin: 0 auto;
+  }
+  &_Control {
+    width: .5rem;
+    height: .5rem;
+    border-width: 2px;
+    border-color: $cl-yellow;
+    border-radius: 50%;
+    box-sizing: border-box;
+    margin: .1rem;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+    &:hover {
+      background-color: $cl-yellow;
+    }
+    &_active {
+      background-color: $cl-yellow;
+    }
   }
   &_Greeting {
     color: $cl-yellow;
     margin: 1rem 1rem;
+    
   }
   &_Presentation {
     font-size: 2.1rem;
     margin: .5rem 0;
     min-width: 25rem;
     text-align: center;
+    @media screen and (max-width: $breakpoint-laptop) {
+      font-size: 1.2rem;
+      min-width: none;
+    }
   }
   &_Message {
     width: 35%;
@@ -42,6 +110,9 @@
     margin: .5rem 0;
     font-size: 1.5rem;
     font-family: $avenirDemi;
+    @media screen and (max-width: $breakpoint-laptop) {
+      font-size: 1rem;
+    }
   }
   @media screen and (max-width: $breakpoint-tablet) {
     padding: 4rem 0;
@@ -53,10 +124,12 @@
       max-width: 85%;
     }
     &_Presentation {
-      font-size: 1.7rem;
+      font-size: 1.4rem;
+      min-width: 0;
+      width: auto;
     }
     &_Submessage {
-      font-size: 1.5rem;
+      font-size: 1rem;
     }
     &_Message {
       font-size: 1.2rem;

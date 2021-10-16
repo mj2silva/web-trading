@@ -167,52 +167,57 @@ export const getUserModules = async (user: User, userGroup?: UserGroup):
   Promise<Module[]> => {
   let group: UserGroup;
   if (!userGroup) {
-    const userGroupRef = firestore.collection('userGroups').doc(user?.groupId);
+    const userGroupRef = firestore
+      .collection('userGroups')
+      .doc(user?.groupId);
     const userGroupDoc = await userGroupRef.get();
     group = userGroupDoc.data() as UserGroup;
   } else {
     group = userGroup;
   }
-  const modulesCollectionRef = firestore
-    .collection('courseModules')
-    .orderBy('order');
-  const userModulesResponse = await modulesCollectionRef.get();
-  const partialUserModules: Module[] = [];
-  userModulesResponse.forEach((moduleResponse) => {
-    partialUserModules.push({
-      id: moduleResponse.id,
-      ...moduleResponse.data() as Module,
+  if (group.accessBegin.toMillis() < Date.now() && group.accessEnd.toMillis() > Date.now()) {
+    const modulesCollectionRef = firestore
+      .collection('courseModules')
+      .orderBy('order');
+    const userModulesResponse = await modulesCollectionRef.get();
+    const partialUserModules: Module[] = [];
+    userModulesResponse.forEach((moduleResponse) => {
+      partialUserModules.push({
+        id: moduleResponse.id,
+        ...moduleResponse.data() as Module,
+      });
     });
-  });
 
-  const modulesPromises: Promise<Module>[] = partialUserModules.map(
-    (partialModule) => {
-      const getModule = async (): Promise<Module> => {
-        const classes = await getModuleClasses(partialModule.id);
-        if (partialModule.order <= (group?.higherModuleOrder || 100)) {
-          const module: Module = {
+    const modulesPromises: Promise<Module>[] = partialUserModules.map(
+      (partialModule) => {
+        const getModule = async (): Promise<Module> => {
+          const classes = await getModuleClasses(partialModule.id);
+          if (partialModule.order <= (group?.higherModuleOrder || 100)) {
+            const module: Module = {
+              ...partialModule,
+              classes,
+            };
+            return module;
+          }
+          return {
             ...partialModule,
-            classes,
+            classes: classes.map((moduleClass) => {
+              const newClass = moduleClass;
+              delete newClass.videoUrl;
+              delete newClass.slug;
+              delete newClass.type;
+              return moduleClass;
+            }),
           };
-          return module;
-        }
-        return {
-          ...partialModule,
-          classes: classes.map((moduleClass) => {
-            const newClass = moduleClass;
-            delete newClass.videoUrl;
-            delete newClass.slug;
-            delete newClass.type;
-            return moduleClass;
-          }),
         };
-      };
-      return getModule();
-    },
-  )
-    .filter((promise) => typeof promise !== 'undefined') as Promise<Module>[];
-  const modules = await Promise.all(modulesPromises);
-  return modules;
+        return getModule();
+      },
+    )
+      .filter((promise) => typeof promise !== 'undefined') as Promise<Module>[];
+    const modules = await Promise.all(modulesPromises);
+    return modules;
+  }
+  throw Error('El acceso a la plataforma para el usuario ha vencido.');
 };
 
 export const createComment = async (user: User, comment: Comment): Promise<void> => {
