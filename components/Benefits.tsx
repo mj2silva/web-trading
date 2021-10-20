@@ -10,7 +10,7 @@ type Props = {
   benefitsList: CourseBenefits[];
 };
 
-const Benefits: FC<Props> = ({ benefitsList } : Props) => {
+const Benefits: FC<Props> = ({ benefitsList }: Props) => {
   const accordionContent = benefitsList?.map((benefit) => ({
     title: benefit.name,
     content: benefit.description,
@@ -34,7 +34,7 @@ const Benefits: FC<Props> = ({ benefitsList } : Props) => {
         <div className={styles.Benefits_Image}>
           <img
             className="image"
-            src="/img/tablet.png"
+            src="/img/mockup new-01.png"
             alt="Imagen de acompañamiento de sección beneficios"
           />
         </div>

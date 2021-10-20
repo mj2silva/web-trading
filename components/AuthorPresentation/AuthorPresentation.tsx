@@ -23,7 +23,7 @@ const authors = [
 const AuthorPresentation: FC = () => {
   const className = cn('section', styles.AuthorPresentation);
   const authorPresentationRef = useRef<HTMLDivElement>(null);
-  const slider = useSlider({ auto: false, totalPages: authors.length, ref: authorPresentationRef });
+  const slider = useSlider({ auto: true, totalPages: authors.length, ref: authorPresentationRef });
   return (
     <section ref={authorPresentationRef} className={className}>
       <div className={styles.AuthorPresentation_Carousel}>
