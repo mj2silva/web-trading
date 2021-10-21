@@ -29,19 +29,18 @@ const useUser = (): UseUserReturn => {
     } catch (err: any) {
       if (err.code === 'auth/wrong-password' || err.code === 'auth/user-not-found') setError('El usuario y/o contraseña son incorrectos');
       else setError('Sucedió un error, intente nuevamente más adelante o comuníquese con nosotros para ayudarlo');
-    } finally {
-      setIsLoading(false);
     }
+    setIsLoading(false);
   };
   const signOut = async (): Promise<void> => {
     setIsLoading(true);
     try {
       await auth.signOut();
+      setError(undefined);
     } catch (err: any) {
       setError(err.message);
-    } finally {
-      setIsLoading(false);
     }
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -53,19 +52,18 @@ const useUser = (): UseUserReturn => {
           setUser(nuser);
           try {
             const ugroup = await getUserGroup(nuser);
+            setUserGroup(ugroup);
             const modules = await getUserModules(nuser, ugroup);
             setUserModules(modules);
-            setUserGroup(ugroup);
           } catch (err: any) {
             setError(err.message || err);
           }
-          setIsLoading(false);
         };
         cancelSub = getUser(newUser, setUserFn);
       } else {
         setUser(null);
-        setIsLoading(false);
       }
+      setIsLoading(false);
       return cancelSub;
     });
   }, []);

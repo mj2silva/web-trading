@@ -12,7 +12,9 @@ type Props = {
 }
 
 const Layout: FC<Props> = ({ children }: Props) => {
-  const { isLoading, user, error } = useContext(UserContext);
+  const {
+    isLoading, user, userModules, userGroup, error, signOut,
+  } = useContext(UserContext);
   const { pathname, push } = useRouter();
   const isPublic = pathname === '/';
   const loadingScreen = (isLoading && !isPublic) || (isPublic && user) || (!user && !isPublic);
@@ -26,8 +28,13 @@ const Layout: FC<Props> = ({ children }: Props) => {
     }
   }, [isLoading, isPublic, pathname, user, push]);
 
-  if (error) {
-    return <main>{ error }</main>;
+  if (error && userGroup && !userModules) {
+    return (
+      <main>
+        Su acceso al curso ha expirado
+        <button onClick={signOut} className="link" type="button">Cerrar sesión</button>
+      </main>
+    );
   }
 
   return loadingScreen

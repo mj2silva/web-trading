@@ -33,7 +33,7 @@ const Course: FC = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        { moduleClassData && <CourseView moduleClass={moduleClassData} /> }
+        <CourseView moduleClass={moduleClassData} />
         <CustomerStories />
         <UserReview />
       </main>

@@ -9,9 +9,14 @@ import { faLock } from '@fortawesome/free-solid-svg-icons';
 import Accordion from './Accordion/Accordion';
 import VimeoVideo from './VimeoVideo';
 import { UserContext } from './Layout/UserProvider';
+import Spinner from './Spinner';
 
 type Props = {
-  moduleClass: ModuleClass,
+  moduleClass?: ModuleClass,
+};
+
+const defaultProps = {
+  moduleClass: undefined,
 };
 
 const CourseView: FC<Props> = (props: Props) => {
@@ -55,15 +60,18 @@ const CourseView: FC<Props> = (props: Props) => {
 
   return (
     <section className={courseViewClassName}>
-      <div className={styles.CourseView_Container}>
-        <VimeoVideo vimeoPlayerUrl={moduleClass?.videoUrl || ''} />
-        <div className={styles.CourseView_NavColumn}>
-          <h2 className={styles.CourseView_NavTitle}>
-            <span className={styles.CourseView_TitleSub}>MÓDULOS</span>
-            {' '}
-            DEL PROGRAMA
-          </h2>
-          {
+      {
+        userModules && moduleClass
+          ? (
+            <div className={styles.CourseView_Container}>
+              <VimeoVideo vimeoPlayerUrl={moduleClass?.videoUrl || ''} />
+              <div className={styles.CourseView_NavColumn}>
+                <h2 className={styles.CourseView_NavTitle}>
+                  <span className={styles.CourseView_TitleSub}>MÓDULOS</span>
+                  {' '}
+                  DEL PROGRAMA
+                </h2>
+                {
             modulesListAccordionContent && (
               <Accordion
                 className={styles.CourseView_Accordion}
@@ -72,11 +80,21 @@ const CourseView: FC<Props> = (props: Props) => {
                 columns={1}
               />
             )
-          }
-        </div>
-      </div>
+                }
+              </div>
+            </div>
+          )
+          : (
+            <div className={styles.CourseView_Container}>
+              <Spinner />
+            </div>
+          )
+      }
+
     </section>
   );
 };
+
+CourseView.defaultProps = defaultProps;
 
 export default CourseView;
