@@ -39,7 +39,7 @@ const Footer: FC = () => (
           <a href="https://t.me/joinchat/mOg3RL3bdqMyMGU5" target="_blank" rel="noreferrer" className={styles.Footer_SocialLogo}>
             <FontAwesomeIcon icon={faTelegramPlane} />
           </a>
-          <a href="https://instagram.com/tradingparatioficial" target="_blank" rel="noreferrer" className={styles.Footer_SocialLogo}>
+          <a href="https://instagram.com/protocolocripto?utm_medium=copy_link" target="_blank" rel="noreferrer" className={styles.Footer_SocialLogo}>
             <FontAwesomeIcon icon={faInstagram} />
           </a>
           <a href="https://www.youtube.com/channel/UCcTO207hVZVonPJxXbMSIIw" target="_blank" rel="noreferrer" className={styles.Footer_SocialLogo}>
